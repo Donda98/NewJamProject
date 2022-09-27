@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour, IInteractable
 {
     [SerializeField] float itemID;
+    [SerializeField] Transform characterInteractionPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class Item : MonoBehaviour, IInteractable
 
     public void OnClick()
     {
+        // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then it may pick up the item.
         PickUpItem();
     }
 
@@ -30,4 +32,10 @@ public class Item : MonoBehaviour, IInteractable
         inventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
         Destroy(this);
     }
+
+    public Transform GetInteractablePosition()
+    {
+        return characterInteractionPosition;
+    }
+
 }
