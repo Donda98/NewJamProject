@@ -18,18 +18,17 @@ public class Item : MonoBehaviour, IInteractable
         
     }
 
-    public void OnClick()
+    public void OnClick(Inventory playerInventory)
     {
-        // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then it may pick up the item.
-        PickUpItem();
+        PickUpItem(playerInventory);
     }
 
-    public void PickUpItem()
+    public void PickUpItem(Inventory playerInventory)
     {
-        Inventory inventory = GetComponent<Inventory>();
         int freeSlotIndex;
-        freeSlotIndex = inventory.CheckFreeSlot();
-        inventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
+        freeSlotIndex = playerInventory.CheckFreeSlot();
+        print(freeSlotIndex);
+        playerInventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
         Destroy(this);
     }
 

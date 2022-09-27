@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void OnClick();
+    void OnClick(Inventory playerInventory);
 
     Transform GetInteractablePosition();
 }

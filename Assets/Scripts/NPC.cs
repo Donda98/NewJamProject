@@ -19,7 +19,7 @@ public class NPC : MonoBehaviour, IInteractable
         
     }
 
-    public void OnClick()
+    public void OnClick(Inventory playerInventory)
     {
         // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then NPC may speak.
         ReproduceDialogue();

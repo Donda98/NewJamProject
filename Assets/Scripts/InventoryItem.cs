@@ -25,7 +25,7 @@ public class InventoryItem : MonoBehaviour, IInteractable
         
     }
     
-    public void OnClick()
+    public void OnClick(Inventory playerInventory)
     {
         SelectItem();
     }

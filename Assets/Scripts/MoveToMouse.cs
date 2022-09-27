@@ -13,6 +13,7 @@ public class MoveToMouse : MonoBehaviour
     private bool mouseOnItem;
     private Vector3 target;
     private GameObject itemHit;
+    private IInteractable interacted;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class MoveToMouse : MonoBehaviour
         {
             mouseOnItem = true;
             itemHit = hit_01.collider.gameObject;
-            print("Sono sopra un Item");
+            //print("Sono sopra un Item");
         }
         else
         {
@@ -50,11 +51,37 @@ public class MoveToMouse : MonoBehaviour
             }
             else
             {
-                print("Ho cliccato un Item");
+                if ((interacted = itemHit.GetComponent<IInteractable>()) != null)
+                {
+                    print("Ho cliccato VERAMENTE un item");
+                    target = interacted.GetInteractablePosition().position;
+                    StartCoroutine(ReachInteractableCoRoutine(interacted));        
+                }
+                else
+                {
+                    print("Ho cliccato un Item");
+                }
             }
            target.z = transform.position.z;
            target.y = transform.position.y;
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    }
+
+    IEnumerator ReachInteractableCoRoutine(IInteractable interacted)
+    {
+        print("Coroutine Started");
+        print("I am on my way");
+        while (this.gameObject.transform.position.x != target.x) 
+        {
+            yield return null;
+        }
+        print("Point reached");
+        TriggerOnClickAction(interacted);
+    }
+
+    private void TriggerOnClickAction(IInteractable interacted)
+    {
+        interacted.OnClick(this.gameObject.GetComponent<Inventory>());
     }
 }
