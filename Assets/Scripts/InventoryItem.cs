@@ -40,5 +40,11 @@ public class InventoryItem : MonoBehaviour, IInteractable
         itemID = newID;
     }
 
-    
+    public Transform GetInteractablePosition()
+    {
+        return characterInventory.gameObject.transform;
+    }
 }
+
+    
+
