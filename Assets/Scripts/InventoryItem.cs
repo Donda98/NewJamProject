@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryItem : MonoBehaviour, IInteractable
 {
     [SerializeField] int itemID;
+    public int currentSlotInInventory;
 
     void Start()
     {
@@ -19,23 +20,33 @@ public class InventoryItem : MonoBehaviour, IInteractable
     
     public void OnClick(Inventory playerInventory)
     {
-        SelectItem();
+
+        SelectItem(playerInventory);
+        playerInventory.MoveItemAround(playerInventory.currentItem);
     }
 
-    public void SelectItem()
+    public void SelectItem(Inventory playerInventory)
     {
-        
+        //if (playerInventory.currentItem == null)
+        //{
+            playerInventory.EquipItem(this);
+        //}
+
+    }
+    public int GetItemID()
+    {
+        return itemID;
+    }
+    public Transform GetInteractablePosition(Inventory playerInventory)
+    {
+        return playerInventory.gameObject.transform;
     }
 
-    public void SetItemID(int newID)
+    public void SetCurrentSlotInInventory(int slotIndexPosition)
     {
-        itemID = newID;
+        currentSlotInInventory = slotIndexPosition;
     }
-
-    public Transform GetInteractablePosition()
-    {
-        return gameObject.transform;
-    }
+    
 }
 
     

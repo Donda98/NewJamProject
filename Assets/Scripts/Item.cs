@@ -30,12 +30,15 @@ public class Item : MonoBehaviour, IInteractable
         print(freeSlotIndex);
         InventoryItem tempInventoryItem = playerInventory.gameObject.GetComponent<ItemList>().GetInventoryItem(itemID);
         playerInventory.inventorySlot[freeSlotIndex] = tempInventoryItem;
-        playerInventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
+        playerInventory.inventorySlot[freeSlotIndex].SetCurrentSlotInInventory(freeSlotIndex);
+        
+        //From print only, it seems  the inventory items are updated currently, though they show the wrong value in the component
+
         Instantiate(playerInventory.inventorySlot[freeSlotIndex].gameObject, playerInventory.GetInventorySlotPosition(freeSlotIndex).position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 
-    public Transform GetInteractablePosition()
+    public Transform GetInteractablePosition(Inventory playerInventory)
     {
         return characterInteractionPosition;
     }

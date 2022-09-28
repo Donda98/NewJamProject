@@ -6,5 +6,5 @@ public interface IInteractable
 {
     void OnClick(Inventory playerInventory);
 
-    Transform GetInteractablePosition();
+    Transform GetInteractablePosition(Inventory playerInventory);
 }

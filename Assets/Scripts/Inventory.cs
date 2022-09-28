@@ -7,6 +7,12 @@ public class Inventory : MonoBehaviour
     public InventoryItem[] inventorySlot = { null, null, null };
     [SerializeField] Transform[] inventorySlotPosition = { null, null, null};
     public InventoryItem currentItem;
+    public Vector3 itemTargetPosition;
+
+    private float moveSpeed = 90f;
+
+    [SerializeField] Camera mainCam;
+    public LayerMask layersToRay;
 
 
     private void Awake()
@@ -45,6 +51,11 @@ public class Inventory : MonoBehaviour
         return freeSlot;
     }
 
+    public void MoveItemAround(InventoryItem chosenInventoryItem)
+    {
+        StartCoroutine(MoveInventoryItem(chosenInventoryItem));
+    }
+
     public void EquipItem(InventoryItem selectedItem)
     {
         currentItem = selectedItem;
@@ -53,5 +64,27 @@ public class Inventory : MonoBehaviour
     public Transform GetInventorySlotPosition(int slotIndex)
     {
         return inventorySlotPosition[slotIndex];
+    }
+    IEnumerator MoveInventoryItem(InventoryItem chosenInventoryItem)
+    {
+        while (chosenInventoryItem == currentItem)
+        {
+            currentItem.gameObject.layer = 0;
+            Ray cameraRay = mainCam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(cameraRay, out RaycastHit hit, 500f, layersToRay))
+            {
+                itemTargetPosition = hit.point;
+            }
+
+            currentItem.gameObject.transform.position = Vector3.MoveTowards(currentItem.gameObject.transform.position, itemTargetPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        chosenInventoryItem.gameObject.layer = 11;
+        resetInventorySlotPosition(chosenInventoryItem);
+    }
+
+    public void resetInventorySlotPosition(InventoryItem itemToReset)
+    {
+        itemToReset.transform.position = inventorySlotPosition[itemToReset.currentSlotInInventory].position;
     }
 }

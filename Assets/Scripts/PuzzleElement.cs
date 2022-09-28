@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class PuzzleElement : MonoBehaviour, IInteractable
 {
     [SerializeField] Transform characterInteractionPosition;
+    [SerializeField] int requiredItemID;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,14 @@ public abstract class PuzzleElement : MonoBehaviour, IInteractable
 
     public void OnClick(Inventory playerInventory)
     {
-        CustomOnClickAction();
+        if (playerInventory.currentItem.GetItemID() == requiredItemID)
+        {
+            CustomOnClickAction();
+        }
+        else
+        {
+            print("Wrong item");
+        }
     }
 
     public virtual void CustomOnClickAction()
@@ -27,7 +35,7 @@ public abstract class PuzzleElement : MonoBehaviour, IInteractable
 
     }
 
-    public Transform GetInteractablePosition()
+    public Transform GetInteractablePosition(Inventory playerInventory)
     {
         return characterInteractionPosition;
     }

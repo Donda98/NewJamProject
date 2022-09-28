@@ -18,6 +18,12 @@ public class MoveToMouse : MonoBehaviour
     private bool isMoving = false;
     private bool isGoingToInteractionPoint = false;
 
+    private Inventory characterInventory;
+
+    private void Awake()
+    {
+        characterInventory = GetComponent<Inventory>();
+    }
     void Start()
     {
         target = transform.position;
@@ -82,7 +88,7 @@ public class MoveToMouse : MonoBehaviour
             if ((interacted = itemHit.GetComponent<IInteractable>()) != null)
             {
                 print("Ho cliccato VERAMENTE un item");
-                target = interacted.GetInteractablePosition().position;
+                target = interacted.GetInteractablePosition(characterInventory).position;
                 StartCoroutine(ReachInteractableCoRoutine(interacted));
             }
             else
@@ -120,6 +126,6 @@ public class MoveToMouse : MonoBehaviour
 
     private void TriggerOnClickAction(IInteractable interacted)
     {
-        interacted.OnClick(this.gameObject.GetComponent<Inventory>());
+        interacted.OnClick(characterInventory);
     }
 }
