@@ -15,8 +15,8 @@ TagManager:
   - 
   - 
   - 
-  - Walkable  Space
-  - Interact
+  - layersToRay
+  - itemLayer
   - 
   - 
   - 

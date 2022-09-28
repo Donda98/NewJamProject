@@ -28,8 +28,10 @@ public class Item : MonoBehaviour, IInteractable
         int freeSlotIndex;
         freeSlotIndex = playerInventory.CheckFreeSlot();
         print(freeSlotIndex);
+        InventoryItem tempInventoryItem = playerInventory.gameObject.GetComponent<ItemList>().GetInventoryItem(freeSlotIndex);
+        playerInventory.inventorySlot[freeSlotIndex] = tempInventoryItem;
         playerInventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 
     public Transform GetInteractablePosition()

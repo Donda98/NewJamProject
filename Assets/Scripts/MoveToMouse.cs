@@ -15,6 +15,9 @@ public class MoveToMouse : MonoBehaviour
     private GameObject itemHit;
     private IInteractable interacted;
 
+    private bool isMoving = false;
+    private bool isGoingToInteractionPoint = false;
+
     void Start()
     {
         target = transform.position;
@@ -22,7 +25,20 @@ public class MoveToMouse : MonoBehaviour
 
     void Update()
     {
-        if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition),out RaycastHit hit_01, 500f, itemLayer))
+        MousePositionCheck();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            DestinationCheck();
+            AlignOnXAxis();
+        }
+
+        GoToTargetDestination();
+    }
+
+    private void MousePositionCheck()
+    {
+        if (Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit_01, 500f, itemLayer))
         {
             mouseOnItem = true;
             itemHit = hit_01.collider.gameObject;
@@ -32,52 +48,74 @@ public class MoveToMouse : MonoBehaviour
         {
             mouseOnItem = false;
         }
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    private void GoToTargetDestination()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (transform.position == target && isGoingToInteractionPoint == false)
         {
-            if (mouseOnItem == false)
-            {
-                GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[0]);
-                Ray cameraRay = mainCam.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(cameraRay, out RaycastHit hit, 500f, layersToRay))
-                {
-                    target = hit.point;
-                }
-                else
-                {
-                    print("Non posso andarci!");
+            isMoving = false;
+        }
+    }
 
-                }
+    private void DestinationCheck()
+    {
+        if (mouseOnItem == false)
+        {
+            GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[0]);
+            Ray cameraRay = mainCam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(cameraRay, out RaycastHit hit, 500f, layersToRay))
+            {
+                target = hit.point;
+                isMoving = true;
+                isGoingToInteractionPoint = false;
             }
             else
             {
-                if ((interacted = itemHit.GetComponent<IInteractable>()) != null)
-                {
-                    print("Ho cliccato VERAMENTE un item");
-                    target = interacted.GetInteractablePosition().position;
-                    StartCoroutine(ReachInteractableCoRoutine(interacted));        
-                }
-                else
-                {
-                    print("Ho cliccato un Item");
-                }
+                print("Non posso andarci!");
+
             }
-           target.z = transform.position.z;
-           target.y = transform.position.y;
         }
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        else
+        {
+            if ((interacted = itemHit.GetComponent<IInteractable>()) != null)
+            {
+                print("Ho cliccato VERAMENTE un item");
+                target = interacted.GetInteractablePosition().position;
+                StartCoroutine(ReachInteractableCoRoutine(interacted));
+            }
+            else
+            {
+                print("Ho cliccato un Item");
+            }
+        }
+    }
+
+    private void AlignOnXAxis()
+    {
+        //keeps the movement only on the x axis by resetting the z and y position
+        target.z = transform.position.z;
+        target.y = transform.position.y;
     }
 
     IEnumerator ReachInteractableCoRoutine(IInteractable interacted)
     {
+        isMoving = true;
+        isGoingToInteractionPoint = true;
         print("Coroutine Started");
         print("I am on my way");
-        while (this.gameObject.transform.position.x != target.x) 
+        while (this.gameObject.transform.position.x != target.x && isMoving == true) 
         {
             yield return null;
         }
-        print("Point reached");
-        TriggerOnClickAction(interacted);
+        if (isMoving == true && isGoingToInteractionPoint == true)
+        {
+            isGoingToInteractionPoint = false;
+            isMoving = false;
+            print("Point reached");
+            TriggerOnClickAction(interacted);
+        }
     }
 
     private void TriggerOnClickAction(IInteractable interacted)

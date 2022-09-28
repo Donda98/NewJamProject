@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Inventory))]
-
 public class InventoryItem : MonoBehaviour, IInteractable
 {
     [SerializeField] int itemID;
-    Inventory characterInventory;
-
-    void Awake()
-    {
-        characterInventory = GetComponent<Inventory>();
-    }
 
     void Start()
     {
@@ -32,7 +24,7 @@ public class InventoryItem : MonoBehaviour, IInteractable
 
     public void SelectItem()
     {
-        characterInventory.EquipItem(this);
+        
     }
 
     public void SetItemID(int newID)
@@ -42,7 +34,7 @@ public class InventoryItem : MonoBehaviour, IInteractable
 
     public Transform GetInteractablePosition()
     {
-        return characterInventory.gameObject.transform;
+        return gameObject.transform;
     }
 }
 
