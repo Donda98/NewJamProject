@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
-    [SerializeField] float itemID;
+    [SerializeField] int itemID;
     [SerializeField] Transform characterInteractionPosition;
     // Start is called before the first frame update
     void Start()
@@ -28,9 +28,10 @@ public class Item : MonoBehaviour, IInteractable
         int freeSlotIndex;
         freeSlotIndex = playerInventory.CheckFreeSlot();
         print(freeSlotIndex);
-        InventoryItem tempInventoryItem = playerInventory.gameObject.GetComponent<ItemList>().GetInventoryItem(freeSlotIndex);
+        InventoryItem tempInventoryItem = playerInventory.gameObject.GetComponent<ItemList>().GetInventoryItem(itemID);
         playerInventory.inventorySlot[freeSlotIndex] = tempInventoryItem;
         playerInventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
+        Instantiate(playerInventory.inventorySlot[freeSlotIndex].gameObject, playerInventory.GetInventorySlotPosition(freeSlotIndex).position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 

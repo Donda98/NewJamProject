@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public InventoryItem[] inventorySlot = { null, null, null };
+    [SerializeField] Transform[] inventorySlotPosition = { null, null, null};
     public InventoryItem currentItem;
 
 
@@ -47,5 +48,10 @@ public class Inventory : MonoBehaviour
     public void EquipItem(InventoryItem selectedItem)
     {
         currentItem = selectedItem;
+    }
+
+    public Transform GetInventorySlotPosition(int slotIndex)
+    {
+        return inventorySlotPosition[slotIndex];
     }
 }

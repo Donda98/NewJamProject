@@ -19,7 +19,6 @@ public abstract class PuzzleElement : MonoBehaviour, IInteractable
 
     public void OnClick(Inventory playerInventory)
     {
-        // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then itmay use th  may pick up the item.
         CustomOnClickAction();
     }
 
