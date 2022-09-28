@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Spectator : MonoBehaviour
 {
-    private float jumpSpeed = 10;
-    private float jumpHeight = 1;
-    private float jumpDuration = 2;
+    private float jumpHeight = 1f;
     private bool reacting;
 
     // Start is called before the first frame update
@@ -20,12 +18,11 @@ public class Spectator : MonoBehaviour
         if (Input.GetMouseButtonDown(1)&&reacting==false)
         {
             StartCoroutine(Wow());
-            print("Urrà!");
         }
      
     }
 
-    private IEnumerator Wow()
+    public IEnumerator Wow()
     {
         reacting = true;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.audienceAudio[0]);

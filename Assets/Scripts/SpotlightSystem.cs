@@ -8,32 +8,35 @@ public class SpotlightSystem : MonoBehaviour
     [SerializeField] GameObject objectToFollow;
     [SerializeField] Light spotlight;
     [SerializeField] float followSpeed;
-    // Start is called before the first frame update
 
     private void Awake()
     {
-        spotlight = GetComponent<Light>();
+
     }
     void Start()
     {
-        
+        spotlight = GetComponent<Light>();
+        objectToFollow = GameManager.Instance.playerInstance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FollowObject();
-        if (Input.GetKeyDown("f"))
+        if (objectToFollow != null)
         {
-            Switch();
-        }
-        if (Input.GetKeyDown("m"))
-        {
-            ModifyLightIntensity(500);       
-        }
-        if (Input.GetKeyDown("l"))
-        {
-            ModifyLightIntensity(-500);
+            FollowObject();
+            if (Input.GetKeyDown("f"))
+            {
+                Switch();
+            }
+            if (Input.GetKeyDown("m"))
+            {
+                ModifyLightIntensity(500);
+            }
+            if (Input.GetKeyDown("l"))
+            {
+                ModifyLightIntensity(-500);
+            }
         }
     }
 
@@ -46,6 +49,7 @@ public class SpotlightSystem : MonoBehaviour
 
     public void Switch()
     {
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
         spotlight.enabled = !spotlight.enabled;
     }
 
