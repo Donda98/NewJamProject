@@ -49,7 +49,7 @@ public class SpotlightSystem : MonoBehaviour
 
     public void Switch()
     {
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
         spotlight.enabled = !spotlight.enabled;
     }
 

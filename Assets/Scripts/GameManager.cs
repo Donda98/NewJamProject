@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    public Texture2D cursorSkin;
     public Camera playerCAM;
     public AudioClip[] audienceAudio;
     public AudioClip[] UIAudio;
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mixerAudio = gameObject.GetComponent<AudioSource>();
+        Cursor.SetCursor(cursorSkin, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     void Update()

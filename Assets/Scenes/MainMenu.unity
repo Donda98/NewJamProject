@@ -461,6 +461,7 @@ Transform:
   - {fileID: 1596452092}
   - {fileID: 710347206}
   - {fileID: 1927936611}
+  - {fileID: 727531567}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -990,12 +991,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727531563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 16.44, z: 68.36}
-  m_LocalScale: {x: 60.10651, y: 35.18631, z: 1}
+  m_LocalPosition: {x: 0.05940524, y: -2.1130393, z: -15.153308}
+  m_LocalScale: {x: 44.408207, y: 25.996534, z: 0.73882526}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 262153952}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749112999
 GameObject:
@@ -1123,12 +1124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5007350edf6e4d94284bdc749d0067c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorSkin: {fileID: 2800000, guid: 120581dd44d3eb0448ca7a36b7af525b, type: 3}
   playerCAM: {fileID: 0}
   audienceAudio:
   - {fileID: 8300000, guid: 398fbd58a20efb845a05b9bb2ccafd82, type: 3}
   UIAudio:
-  - {fileID: 8300000, guid: 82e267feef9093e41a7634d4615b6c44, type: 3}
+  - {fileID: 8300000, guid: 3bc894b184eed0e46bc3e090c0b488a6, type: 3}
+  - {fileID: 8300000, guid: d3e0c87cdd33ecd4fbf1867853c33ab5, type: 3}
   - {fileID: 8300000, guid: ccf8da1332d57354a8a0aae8706cb5e8, type: 3}
+  - {fileID: 8300000, guid: d80f43427822ea744a251d7e796546a2, type: 3}
   mixerAudio: {fileID: 749113000}
   canvas: {fileID: 1427226889}
   playerInstance: {fileID: 0}
@@ -2827,7 +2831,7 @@ Transform:
   m_Children:
   - {fileID: 1387296631}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1741954335
 PrefabInstance:
@@ -3471,7 +3475,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1479835996167920761
 PrefabInstance:
@@ -3583,7 +3587,7 @@ PrefabInstance:
     - target: {fileID: 1479835994742922609, guid: d2946026a6f930d4a9c8ce186c501dbc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1479835994742922609, guid: d2946026a6f930d4a9c8ce186c501dbc,
         type: 3}

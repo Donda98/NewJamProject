@@ -8,7 +8,7 @@ public class MoveToMouse : MonoBehaviour
     public LayerMask layersToRay;
     public LayerMask itemLayer;
     public bool mouseActive;
-
+    public Texture2D[] cursorSkin;
     [SerializeField] private Camera mainCam;
     [SerializeField] private MainCanvas canvas;
     private bool mouseOnItem;
@@ -21,6 +21,7 @@ public class MoveToMouse : MonoBehaviour
         mainCam = GameManager.Instance.playerCAM;
         canvas = GameManager.Instance.canvas;
         GameManager.Instance.playerInstance = gameObject;
+        Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
     }
 
     void Update()
@@ -47,10 +48,13 @@ public class MoveToMouse : MonoBehaviour
                 mouseOnItem = true;
                 itemHit = hit_01.collider.gameObject;
                 print("Sono sopra un Item");
+                Cursor.SetCursor(cursorSkin[1], Vector2.zero, CursorMode.ForceSoftware);
+
             }
             else
             {
                 mouseOnItem = false;
+                Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -66,7 +70,6 @@ public class MoveToMouse : MonoBehaviour
                     else
                     {
                         print("Non posso andarci!");
-
                     }
                 }
                 else
@@ -77,6 +80,22 @@ public class MoveToMouse : MonoBehaviour
                 target.y = transform.position.y;
             }
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (mouseOnItem == false)
+                {
+                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+                }
+                else
+                {
+                    //Pick Up Item
+                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[3]);
+                }
+            }
+        }else
+        {
+            Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 }

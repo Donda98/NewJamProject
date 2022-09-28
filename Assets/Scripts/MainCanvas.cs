@@ -59,7 +59,7 @@ public class MainCanvas : MonoBehaviour
             isPaused = false;
             background.SetActive(false);
         }
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
 
     }
     public void ShowOptions()
@@ -76,7 +76,7 @@ public class MainCanvas : MonoBehaviour
         menuPages[1].SetActive(true);       //Options 
         menuPages[2].SetActive(false);      //Credits
         menuPages[3].SetActive(false);      //PauseMenu
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
 
     }
     public void ShowCredits()
@@ -85,7 +85,7 @@ public class MainCanvas : MonoBehaviour
         menuPages[1].SetActive(false);      //Options 
         menuPages[2].SetActive(true);       //Credits
         menuPages[3].SetActive(false);      //PauseMenu
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
 
     }
 
@@ -96,7 +96,7 @@ public class MainCanvas : MonoBehaviour
         menuPages[2].SetActive(false);      //Credits
         menuPages[3].SetActive(false);      //PauseMenu
         isOnMenu = false;
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
         GameManager.Instance.StartAct(1);
     }
 
@@ -107,7 +107,7 @@ public class MainCanvas : MonoBehaviour
         menuPages[2].SetActive(false);      //Credits
         menuPages[3].SetActive(true);       //PauseMenu
         background.SetActive(true);
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
     public void ResumeGame()
     {
@@ -117,7 +117,7 @@ public class MainCanvas : MonoBehaviour
         menuPages[3].SetActive(false);      //PauseMenu
         isPaused = false;
         background.SetActive(false);
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
 
     public void BackToMenu()
@@ -130,23 +130,23 @@ public class MainCanvas : MonoBehaviour
         isPaused = false;
         background.SetActive(false);
         GameManager.Instance.LoadMenu();
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
     public void SetVolume()
     {
         GameManager.Instance.mixerAudio.volume = volumeSlide.GetComponent<Slider>().value;
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
 
     public void SetLanguage()
     {
         GameManager.Instance.language = language.GetComponent<TMP_Dropdown>().value;
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
 
     public void ExitGame()
     {
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
         GameManager.Instance.QuitGame();
     }
 }
