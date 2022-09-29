@@ -90,6 +90,7 @@ public class MoveToMouse : MonoBehaviour
         {
             if ((interacted = itemHit.GetComponent<IInteractable>()) != null)
             {
+                if (characterInventory.currentItem != null && ((itemHit.GetComponent<Item>())))
                 print("Ho cliccato VERAMENTE un item");
                 target = interacted.GetInteractablePosition(characterInventory).position;
                 StartCoroutine(ReachInteractableCoRoutine(interacted));
