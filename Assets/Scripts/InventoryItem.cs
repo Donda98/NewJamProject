@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Inventory))]
-
 public class InventoryItem : MonoBehaviour, IInteractable
 {
     [SerializeField] int itemID;
-    Inventory characterInventory;
-
-    void Awake()
-    {
-        characterInventory = GetComponent<Inventory>();
-    }
+    public int currentSlotInInventory;
 
     void Start()
     {
@@ -25,25 +18,34 @@ public class InventoryItem : MonoBehaviour, IInteractable
         
     }
     
-    public void OnClick()
+    public void OnClick(Inventory playerInventory)
     {
-        SelectItem();
+        SelectItem(playerInventory);
+        playerInventory.MoveItemAround(playerInventory.currentItem);
     }
 
-    public void SelectItem()
+    public void SelectItem(Inventory playerInventory)
     {
-        characterInventory.EquipItem(this);
+        //if (playerInventory.currentItem == null)
+        //{
+            playerInventory.EquipItem(this);
+        //}
+
+    }
+    public int GetItemID()
+    {
+        return itemID;
+    }
+    public Transform GetInteractablePosition(Inventory playerInventory)
+    {
+        return playerInventory.gameObject.transform;
     }
 
-    public void SetItemID(int newID)
+    public void SetCurrentSlotInInventory(int slotIndexPosition)
     {
-        itemID = newID;
+        currentSlotInInventory = slotIndexPosition;
     }
-
-    public Transform GetInteractablePosition()
-    {
-        return characterInventory.gameObject.transform;
-    }
+    
 }
 
     

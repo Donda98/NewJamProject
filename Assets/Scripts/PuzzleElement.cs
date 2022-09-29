@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class PuzzleElement : MonoBehaviour, IInteractable
 {
     [SerializeField] Transform characterInteractionPosition;
+    [SerializeField] int requiredItemID;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +18,29 @@ public abstract class PuzzleElement : MonoBehaviour, IInteractable
         
     }
 
-    public void OnClick()
+    public void OnClick(Inventory playerInventory)
     {
-        // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then itmay use th  may pick up the item.
-        CustomOnClickAction();
+        if(playerInventory.currentItem != null)
+        {
+            if (playerInventory.currentItem.GetItemID() == requiredItemID)
+            {
+                print("AMAZING BOSS, THAT'S WHY YOU ARE THE BEST. THE ONE AND ONLY.");
+                CustomOnClickAction(playerInventory);
+            }
+            else
+            {
+                print("Wrong item");
+            }
+        }
+
     }
 
-    public virtual void CustomOnClickAction()
+    public virtual void CustomOnClickAction(Inventory playerInventory)
     {
 
     }
 
-    public Transform GetInteractablePosition()
+    public Transform GetInteractablePosition(Inventory playerInventory)
     {
         return characterInteractionPosition;
     }

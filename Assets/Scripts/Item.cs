@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
-    [SerializeField] float itemID;
+    [SerializeField] int itemID;
     [SerializeField] Transform characterInteractionPosition;
     // Start is called before the first frame update
     void Start()
@@ -18,22 +18,27 @@ public class Item : MonoBehaviour, IInteractable
         
     }
 
-    public void OnClick()
+    public void OnClick(Inventory playerInventory)
     {
-        // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then it may pick up the item.
-        PickUpItem();
+        PickUpItem(playerInventory);
     }
 
-    public void PickUpItem()
+    public void PickUpItem(Inventory playerInventory)
     {
-        Inventory inventory = GetComponent<Inventory>();
         int freeSlotIndex;
-        freeSlotIndex = inventory.CheckFreeSlot();
-        inventory.inventorySlot[freeSlotIndex].SetItemID(freeSlotIndex);
-        Destroy(this);
+        freeSlotIndex = playerInventory.CheckFreeSlot();
+        print(freeSlotIndex);
+        GameObject tempInventoryItem = playerInventory.gameObject.GetComponent<ItemList>().GetInventoryItem(itemID).gameObject;
+        playerInventory.inventorySlot[freeSlotIndex] = tempInventoryItem.GetComponent<InventoryItem>();
+        playerInventory.inventorySlot[freeSlotIndex].SetCurrentSlotInInventory(freeSlotIndex);
+        playerInventory.SetCurrentItemSlotID(freeSlotIndex);
+        
+        //From print only, it seems  the inventory items are updated currently, though they show the wrong value in the component
+        GameObject temp = Instantiate(playerInventory.inventorySlot[freeSlotIndex].gameObject, playerInventory.GetInventorySlotPosition(freeSlotIndex).position, Quaternion.identity);       
+        Destroy(this.gameObject);
     }
 
-    public Transform GetInteractablePosition()
+    public Transform GetInteractablePosition(Inventory playerInventory)
     {
         return characterInteractionPosition;
     }
