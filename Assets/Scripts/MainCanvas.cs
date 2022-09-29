@@ -13,7 +13,8 @@ public class MainCanvas : MonoBehaviour
     [SerializeField] private GameObject background;
     public bool isPaused;
     public bool isOnMenu;
-
+    public TMP_Dropdown resolutionDropdown;
+    Resolution[] resolutions;
     private void Awake()
     {
         if (Instance == null)
@@ -26,11 +27,30 @@ public class MainCanvas : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     void Start()
     {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+        int currentResolutionIndex = 0;
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if(resolutions[i].width == Screen.currentResolution.width && 
+               resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+
+        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
         ShowMenu();
         GetComponent<Canvas>().worldCamera = GameManager.Instance.playerCAM;
     }
@@ -148,5 +168,16 @@ public class MainCanvas : MonoBehaviour
     {
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
         GameManager.Instance.QuitGame();
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void ToggleFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
     }
 }
