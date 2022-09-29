@@ -38,8 +38,11 @@ public class MoveToMouse : MonoBehaviour
             DestinationCheck();
             AlignOnXAxis();
         }
-
         GoToTargetDestination();
+        if (Input.GetMouseButtonDown(1))
+        {
+            characterInventory.currentItem = null;
+        }
     }
 
     private void MousePositionCheck()

@@ -20,7 +20,6 @@ public class InventoryItem : MonoBehaviour, IInteractable
     
     public void OnClick(Inventory playerInventory)
     {
-
         SelectItem(playerInventory);
         playerInventory.MoveItemAround(playerInventory.currentItem);
     }

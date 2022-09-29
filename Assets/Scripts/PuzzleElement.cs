@@ -20,17 +20,22 @@ public abstract class PuzzleElement : MonoBehaviour, IInteractable
 
     public void OnClick(Inventory playerInventory)
     {
-        if (playerInventory.currentItem.GetItemID() == requiredItemID)
+        if(playerInventory.currentItem != null)
         {
-            CustomOnClickAction();
+            if (playerInventory.currentItem.GetItemID() == requiredItemID)
+            {
+                print("AMAZING BOSS, THAT'S WHY YOU ARE THE BEST. THE ONE AND ONLY.");
+                CustomOnClickAction(playerInventory);
+            }
+            else
+            {
+                print("Wrong item");
+            }
         }
-        else
-        {
-            print("Wrong item");
-        }
+
     }
 
-    public virtual void CustomOnClickAction()
+    public virtual void CustomOnClickAction(Inventory playerInventory)
     {
 
     }

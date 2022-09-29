@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour, IInteractable
+public abstract class NPC : MonoBehaviour, IInteractable
 {
-    private string[] dialogueList;
+    [SerializeField] GameObject[] dialogueList;
     [SerializeField] Transform dialoguePopUpPosition;
     [SerializeField] Transform characterInteractionPosition;
+    [SerializeField] int[] itemIDAnswers = { 0, 0, 0, 0, 0, 0 };
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +22,30 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void OnClick(Inventory playerInventory)
     {
-        // Cooroutine to check (in the MoveToMouse function) if the character has reached the interaction point. Only then NPC may speak.
-        ReproduceDialogue();
+        if (playerInventory.currentItem == null)
+        {
+            ReproduceDefaultDialogue();
+            print("tikitikidesuka?");
+        }
+        else
+        {
+            ReproduceDialogue(playerInventory);
+        }
+    
     }
 
-    public void ReproduceDialogue()
+    public virtual void ReproduceDialogue(Inventory playerInventory)
+    {
+        
+    }
+    
+    public void ReproduceDefaultDialogue()
+    {
+        GameObject tempDialogue = Instantiate(dialogueList[0], dialoguePopUpPosition.position, Quaternion.identity);
+        Destroy(tempDialogue, 5);
+    }
+    
+    public virtual void CustomNPCEvent()
     {
 
     }

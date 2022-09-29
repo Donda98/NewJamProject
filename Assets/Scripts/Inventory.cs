@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     public InventoryItem[] inventorySlot = { null, null, null };
     [SerializeField] Transform[] inventorySlotPosition = { null, null, null};
     public InventoryItem currentItem;
+    [SerializeField] GameObject currentGameObject;
+    private int currentItemSlotID;
     public Vector3 itemTargetPosition;
 
     private float moveSpeed = 90f;
@@ -30,9 +32,12 @@ public class Inventory : MonoBehaviour
         
     }
 
-    private void FreeInventorySlot(int slotNumber)
+   
+    public void FreeInventorySlot()
     {
-        inventorySlot[slotNumber] = null;
+        inventorySlot[currentItemSlotID] = null;
+        currentItem = null;
+        Destroy(currentGameObject);
     }
     
     public int CheckFreeSlot()
@@ -67,6 +72,7 @@ public class Inventory : MonoBehaviour
     }
     IEnumerator MoveInventoryItem(InventoryItem chosenInventoryItem)
     {
+        currentGameObject = chosenInventoryItem.gameObject;
         while (chosenInventoryItem == currentItem)
         {
             currentItem.gameObject.layer = 0;
@@ -86,5 +92,10 @@ public class Inventory : MonoBehaviour
     public void resetInventorySlotPosition(InventoryItem itemToReset)
     {
         itemToReset.transform.position = inventorySlotPosition[itemToReset.currentSlotInInventory].position;
+    }
+
+    public void SetCurrentItemSlotID(int itemSlotID)
+    {
+        currentItemSlotID = itemSlotID;
     }
 }
