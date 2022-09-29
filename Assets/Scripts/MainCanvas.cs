@@ -20,7 +20,6 @@ public class MainCanvas : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            GameManager.Instance.canvas = this.GetComponent<MainCanvas>();
             DontDestroyOnLoad(gameObject);
         }
         else if (Instance != null)
@@ -31,26 +30,8 @@ public class MainCanvas : MonoBehaviour
 
     void Start()
     {
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
-        int currentResolutionIndex = 0;
-        for(int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-
-            if(resolutions[i].width == Screen.currentResolution.width && 
-               resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-
-        }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-
+        GameManager.Instance.canvas = this.GetComponent<MainCanvas>();
+        FindAllResolutions();
         ShowMenu();
         GetComponent<Canvas>().worldCamera = GameManager.Instance.playerCAM;
     }
@@ -127,6 +108,7 @@ public class MainCanvas : MonoBehaviour
         menuPages[2].SetActive(false);      //Credits
         menuPages[3].SetActive(true);       //PauseMenu
         background.SetActive(true);
+        isPaused = true;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
     public void ResumeGame()
@@ -168,6 +150,29 @@ public class MainCanvas : MonoBehaviour
     {
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
         GameManager.Instance.QuitGame();
+    }
+
+    public void FindAllResolutions()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+        int currentResolutionIndex = 0;
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+               resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+
+        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)

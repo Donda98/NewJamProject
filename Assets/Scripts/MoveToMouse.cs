@@ -5,12 +5,17 @@ using UnityEngine;
 public class MoveToMouse : MonoBehaviour
 {
     public float speed = 5f;
+    public bool mouseActive;
     public LayerMask layersToRay;
     public LayerMask itemLayer;
+    public Texture2D[] cursorSkin;
 
     [SerializeField] private Camera mainCam;
+    [SerializeField] private MainCanvas canvas;
 
     private bool mouseOnItem;
+    private bool isClicking;
+    private bool isInteracting;
     private Vector3 target;
     private GameObject itemHit;
     private IInteractable interacted;
@@ -27,21 +32,68 @@ public class MoveToMouse : MonoBehaviour
     void Start()
     {
         target = transform.position;
+        mainCam = GameManager.Instance.playerCAM;
+        canvas = GameManager.Instance.canvas;
+        GameManager.Instance.playerInstance = gameObject;
+        Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
     }
 
     void Update()
     {
-        MousePositionCheck();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Escape) && canvas.isOnMenu == false)
         {
-            DestinationCheck();
-            AlignOnXAxis();
+            Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
+            if (canvas.isPaused == false)
+            {
+                canvas.ShowPauseMenu();
+                isClicking = false;
+            }
+            else
+            {
+                canvas.ResumeGame();
+            }
         }
-        GoToTargetDestination();
-        if (Input.GetMouseButtonDown(1))
+
+        if (canvas.isOnMenu == false && canvas.isPaused == false)
         {
-            characterInventory.currentItem = null;
+            MousePositionCheck();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                DestinationCheck();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                characterInventory.currentItem = null;
+            }
+            //Al rilascio del tasto sinistro del Mouse, se stavo interagendo con un Item ne richiamerò una funzione, altrimenti non faccio nulla.
+            if (Input.GetMouseButtonUp(0))
+            {
+                isClicking = false;
+                if (mouseOnItem)
+                {
+                    //Pick Up Item
+                    if (isInteracting)
+                    {
+                        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[3]);
+                        print("Interagisco con l'oggetto");
+                        SetTarget(itemHit.transform.position);
+                    }
+                    else
+                    {
+                        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+                    }
+                }
+                else
+                {
+                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+                }
+                Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
+                isInteracting = false;
+            }
+            //Aggiorno costantemente la posizione del Player, che si muoverà sempre in direzione del Target alla velocità Speed.
+            GoToTargetDestination();
         }
     }
 
@@ -51,11 +103,18 @@ public class MoveToMouse : MonoBehaviour
         {
             mouseOnItem = true;
             itemHit = hit_01.collider.gameObject;
-            //print("Sono sopra un Item");
+            if (isClicking == false)
+            {
+                Cursor.SetCursor(cursorSkin[2], Vector2.zero, CursorMode.ForceSoftware);
+            }
         }
         else
         {
             mouseOnItem = false;
+            if (isClicking == false)
+            {
+                Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
+            }
         }
     }
 
@@ -70,13 +129,15 @@ public class MoveToMouse : MonoBehaviour
 
     private void DestinationCheck()
     {
+        isClicking = true;
         if (mouseOnItem == false)
         {
             GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[0]);
+            Cursor.SetCursor(cursorSkin[1], Vector2.zero, CursorMode.ForceSoftware);
             Ray cameraRay = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(cameraRay, out RaycastHit hit, 500f, layersToRay))
             {
-                target = hit.point;
+                SetTarget(hit.point);
                 isMoving = true;
                 isGoingToInteractionPoint = false;
             }
@@ -85,14 +146,17 @@ public class MoveToMouse : MonoBehaviour
                 print("Non posso andarci!");
 
             }
+            isInteracting = false;
         }
         else
         {
+            isInteracting = true;
+            Cursor.SetCursor(cursorSkin[3], Vector2.zero, CursorMode.ForceSoftware);
             if ((interacted = itemHit.GetComponent<IInteractable>()) != null)
             {
                 if (characterInventory.currentItem != null && ((itemHit.GetComponent<Item>())))
                 print("Ho cliccato VERAMENTE un item");
-                target = interacted.GetInteractablePosition(characterInventory).position;
+                SetTarget(interacted.GetInteractablePosition(characterInventory).position);
                 StartCoroutine(ReachInteractableCoRoutine(interacted));
             }
             else
@@ -100,13 +164,6 @@ public class MoveToMouse : MonoBehaviour
                 print("Ho cliccato un Item");
             }
         }
-    }
-
-    private void AlignOnXAxis()
-    {
-        //keeps the movement only on the x axis by resetting the z and y position
-        target.z = transform.position.z;
-        target.y = transform.position.y;
     }
 
     IEnumerator ReachInteractableCoRoutine(IInteractable interacted)
@@ -131,5 +188,11 @@ public class MoveToMouse : MonoBehaviour
     private void TriggerOnClickAction(IInteractable interacted)
     {
         interacted.OnClick(characterInventory);
+    }
+    private void SetTarget(Vector3 newTarget)
+    {
+        target = newTarget;
+        target.z = transform.position.z;
+        target.y = transform.position.y;
     }
 }
