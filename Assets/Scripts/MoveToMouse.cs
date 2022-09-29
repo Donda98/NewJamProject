@@ -12,6 +12,8 @@ public class MoveToMouse : MonoBehaviour
     [SerializeField] private Camera mainCam;
     [SerializeField] private MainCanvas canvas;
     private bool mouseOnItem;
+    private bool isClicking;
+    private bool isInteracting;
     private Vector3 target;
     private GameObject itemHit;
 
@@ -29,11 +31,12 @@ public class MoveToMouse : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) && canvas.isOnMenu == false)
         {
+            Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
             if (canvas.isPaused == false)
             {
                 canvas.ShowPauseMenu();
                 canvas.isPaused = true;
-
+                isClicking = false;
             }
             else
             {
@@ -48,20 +51,27 @@ public class MoveToMouse : MonoBehaviour
                 mouseOnItem = true;
                 itemHit = hit_01.collider.gameObject;
                 print("Sono sopra un Item");
-                Cursor.SetCursor(cursorSkin[1], Vector2.zero, CursorMode.ForceSoftware);
-
+                if (isClicking == false)
+                {
+                    Cursor.SetCursor(cursorSkin[2], Vector2.zero, CursorMode.ForceSoftware);
+                }
             }
             else
             {
                 mouseOnItem = false;
-                Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
+                if (isClicking == false)
+                {
+                    Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
+                }
             }
 
             if (Input.GetMouseButtonDown(0))
             {
+                isClicking = true;
                 if (mouseOnItem == false)
                 {
-                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[0]);
+                    Cursor.SetCursor(cursorSkin[1], Vector2.zero, CursorMode.ForceSoftware);
+                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
                     Ray cameraRay = mainCam.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(cameraRay, out RaycastHit hit, 500f, layersToRay))
                     {
@@ -74,6 +84,8 @@ public class MoveToMouse : MonoBehaviour
                 }
                 else
                 {
+                    isInteracting = true;
+                    Cursor.SetCursor(cursorSkin[3], Vector2.zero, CursorMode.ForceSoftware);
                     print("Ho cliccato un Item");
                 }
                 target.z = transform.position.z;
@@ -83,19 +95,25 @@ public class MoveToMouse : MonoBehaviour
             
             if (Input.GetMouseButtonUp(0))
             {
-                if (mouseOnItem == false)
+                isClicking = false;
+                if (mouseOnItem)
                 {
-                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+                    //Pick Up Item
+                    if (isInteracting)
+                    {
+                        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[3]);
+                    }
+                    else
+                    {
+                        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
+                    }
                 }
                 else
                 {
-                    //Pick Up Item
-                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[3]);
+                    GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[1]);
                 }
+                Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
             }
-        }else
-        {
-            Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 }
