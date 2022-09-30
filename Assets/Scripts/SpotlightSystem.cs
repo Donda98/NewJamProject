@@ -16,7 +16,8 @@ public class SpotlightSystem : MonoBehaviour
     void Start()
     {
         spotlight = GetComponent<Light>();
-        objectToFollow = GameManager.Instance.playerInstance;
+    // objectToFollow = GameManager.Instance.playerInstance;
+        spotlight.intensity = 0f;
     }
 
     // Update is called once per frame

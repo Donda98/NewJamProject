@@ -181,7 +181,7 @@ public class MainCanvas : MonoBehaviour
                 break;
 
             case 2:
-                textContent[0].text = "Empezar";
+                textContent[0].text = "Iniciar Partida";
                 textContent[1].text = "Opciones";
                 textContent[2].text = "Créditos";
                 textContent[3].text = "Salir";
@@ -189,8 +189,8 @@ public class MainCanvas : MonoBehaviour
                 textContent[5].text = "Idioma";
                 textContent[6].text = "Pantalla completa";
                 textContent[7].text = "Resolución";
-                textContent[8].text = "Retornar";
-                textContent[9].text = "Retornar";
+                textContent[8].text = "Atrás";
+                textContent[9].text = "Atrás";
                 textContent[10].text = "Continuar";
                 textContent[11].text = "Opciones";
                 textContent[12].text = "Vuelve al menú";

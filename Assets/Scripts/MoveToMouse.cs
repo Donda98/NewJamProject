@@ -44,6 +44,7 @@ public class MoveToMouse : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && canvas.isOnMenu == false)
         {
             Cursor.SetCursor(cursorSkin[0], Vector2.zero, CursorMode.ForceSoftware);
+            GameManager.Instance.sipario.instructions = 3;
             if (canvas.isPaused == false)
             {
                 canvas.ShowPauseMenu();

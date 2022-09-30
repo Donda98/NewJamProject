@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public MainCanvas canvas;
     public GameObject playerInstance;
 
+    public siparioBehaviour sipario;
+    
     public int language; //0 = Inglese, 1 = Italiano
 
 
@@ -42,7 +44,8 @@ public class GameManager : MonoBehaviour
     }
     public void StartAct(int x)
     {
-        SceneManager.LoadScene(x);
+        sipario.instructions = 1;
+        sipario.sceneToLoad = x;
     }
     public void ReloadScene()
     {
@@ -51,7 +54,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(0);
+        sipario.instructions = 1;
+        sipario.sceneToLoad = 0;
     }
     public void QuitGame()
     {
