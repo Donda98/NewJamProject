@@ -8,6 +8,7 @@ public class siparioBehaviour : MonoBehaviour
     public static siparioBehaviour Instance;
     [SerializeField] private SkinnedMeshRenderer tende;
     [SerializeField] private MainCanvas canvas;
+   // [SerializeField] private Light lightTeatro;
     public float speed;
     public int instructions;
     public float targetAperture;
@@ -44,10 +45,12 @@ public class siparioBehaviour : MonoBehaviour
                 if (canvas.isPaused||canvas.isOnMenu)
                 {
                     tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 0f, speed * Time.deltaTime));
+                   // lightTeatro.intensity = Mathf.Lerp(lightTeatro.intensity, 20000f, speed * 0.8f * Time.deltaTime);
                 }
                 else
                 {
                     tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 100f, speed * Time.deltaTime));
+                   // lightTeatro.intensity = Mathf.Lerp(lightTeatro.intensity, 0f, speed * 0.8f * Time.deltaTime);
                 }
                 break;
         }
