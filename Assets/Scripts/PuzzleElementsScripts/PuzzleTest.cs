@@ -5,6 +5,7 @@ using UnityEngine;
 public class PuzzleTest : PuzzleElement
 {
     // Start is called before the first frame update
+    [SerializeField] GameObject otherDebris;
     public override void CustomOnClickAction(Inventory playerInventory)
     {
         playerInventory.FreeInventorySlot();

@@ -7,19 +7,8 @@ public abstract class NPC : MonoBehaviour, IInteractable
     [SerializeField] GameObject[] dialogueList;
     [SerializeField] Transform dialoguePopUpPosition;
     [SerializeField] Transform characterInteractionPosition;
-    [SerializeField] int[] itemIDAnswers = { 0, 0, 0, 0, 0, 0 };
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public int requiredItemID;
+    //[SerializeField] int[] itemIDAnswers = { 0, 0, 0, 0, 0, 0 };
     public void OnClick(Inventory playerInventory)
     {
         if (playerInventory.currentItem == null)
