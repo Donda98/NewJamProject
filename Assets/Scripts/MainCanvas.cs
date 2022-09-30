@@ -11,6 +11,7 @@ public class MainCanvas : MonoBehaviour
     [SerializeField] private GameObject volumeSlide;
     [SerializeField] private GameObject language;
     [SerializeField] private GameObject background;
+    [SerializeField] private TMP_Text[] textContent;
     public bool isPaused;
     public bool isOnMenu;
     public TMP_Dropdown resolutionDropdown;
@@ -142,8 +143,60 @@ public class MainCanvas : MonoBehaviour
 
     public void SetLanguage()
     {
-        GameManager.Instance.language = language.GetComponent<TMP_Dropdown>().value;
+         int idioma = language.GetComponent<TMP_Dropdown>().value;
+        GameManager.Instance.language = idioma;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
+        switch (idioma)
+        {
+            case 0:
+                textContent[0].text = "Start";
+                textContent[1].text = "Options";
+                textContent[2].text = "Credits";
+                textContent[3].text = "Quit";
+                textContent[4].text = "Volume";
+                textContent[5].text = "Language";
+                textContent[6].text = "Fullscreen";
+                textContent[7].text = "Resolution";
+                textContent[8].text = "Return";
+                textContent[9].text = "Return";
+                textContent[10].text = "Resume";
+                textContent[11].text = "Options";
+                textContent[12].text = "Back to menu";
+                break;
+
+            case 1:
+                textContent[0].text = "Inizia";
+                textContent[1].text = "Opzioni";
+                textContent[2].text = "Crediti";
+                textContent[3].text = "Esci";
+                textContent[4].text = "Volume";
+                textContent[5].text = "Lingua";
+                textContent[6].text = "Schermo Intero";
+                textContent[7].text = "Risoluzione";
+                textContent[8].text = "Indietro";
+                textContent[9].text = "Indietro";
+                textContent[10].text = "Riprendi";
+                textContent[11].text = "Opzioni";
+                textContent[12].text = "Torna al menù";
+                break;
+
+            case 2:
+                textContent[0].text = "Empezar";
+                textContent[1].text = "Opciones";
+                textContent[2].text = "Créditos";
+                textContent[3].text = "Salir";
+                textContent[4].text = "Volumen";
+                textContent[5].text = "Lenguas";
+                textContent[6].text = "Pantalla completa";
+                textContent[7].text = "Resolución";
+                textContent[8].text = "Retornar";
+                textContent[9].text = "Retornar";
+                textContent[10].text = "Continuar";
+                textContent[11].text = "Opciones";
+                textContent[12].text = "Vuelve al menú";
+                break;
+        }
+
     }
 
     public void ExitGame()

@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 1479835994144131658}
   - component: {fileID: 1479835994144131659}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GoToMenu_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 1479835994231194026}
   - component: {fileID: 1479835994231194027}
   m_Layer: 5
-  m_Name: Language
+  m_Name: Language_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 1479835994409177399}
   - component: {fileID: 1479835994409177396}
   m_Layer: 5
-  m_Name: Volume
+  m_Name: Volume_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 1479835994437571744}
   - component: {fileID: 1479835994437571745}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Return_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2173,6 +2173,20 @@ MonoBehaviour:
   volumeSlide: {fileID: 1479835994067740423}
   language: {fileID: 1479835995906993211}
   background: {fileID: 1363394613321227955}
+  textContent:
+  - {fileID: 1479835996097489066}
+  - {fileID: 1479835995351889002}
+  - {fileID: 1479835995449351806}
+  - {fileID: 1479835995022089640}
+  - {fileID: 1479835994409177396}
+  - {fileID: 1479835994231194027}
+  - {fileID: 5145899272134779527}
+  - {fileID: 3050344049833450490}
+  - {fileID: 1479835995256905607}
+  - {fileID: 1479835994437571745}
+  - {fileID: 1479835994787784551}
+  - {fileID: 1479835995230385821}
+  - {fileID: 1479835994144131659}
   isPaused: 0
   isOnMenu: 0
   resolutionDropdown: {fileID: 6326480810443697980}
@@ -2188,7 +2202,7 @@ GameObject:
   - component: {fileID: 1479835994787784550}
   - component: {fileID: 1479835994787784551}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Resume_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2668,7 +2682,7 @@ GameObject:
   - component: {fileID: 1479835995022089643}
   - component: {fileID: 1479835995022089640}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Quit_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3543,7 +3557,7 @@ GameObject:
   - component: {fileID: 1479835995230385820}
   - component: {fileID: 1479835995230385821}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Options_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3678,7 +3692,7 @@ GameObject:
   - component: {fileID: 1479835995256905606}
   - component: {fileID: 1479835995256905607}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Return_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3850,7 +3864,7 @@ GameObject:
   - component: {fileID: 1479835995351889005}
   - component: {fileID: 1479835995351889002}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Options_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4389,7 +4403,7 @@ GameObject:
   - component: {fileID: 1479835995449351793}
   - component: {fileID: 1479835995449351806}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Credits_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5369,6 +5383,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Italian
       m_Image: {fileID: 0}
+    - m_Text: "Espa\xF1ol"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5776,7 +5792,7 @@ GameObject:
   - component: {fileID: 1479835996097489069}
   - component: {fileID: 1479835996097489066}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Start_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6558,7 +6574,7 @@ GameObject:
   - component: {fileID: 5906904574635775412}
   - component: {fileID: 5145899272134779527}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Fullscreen_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6880,7 +6896,7 @@ GameObject:
   - component: {fileID: 2248568254635645990}
   - component: {fileID: 3050344049833450490}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Resolution_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
