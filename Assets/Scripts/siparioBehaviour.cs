@@ -66,14 +66,14 @@ public class siparioBehaviour : MonoBehaviour
             }
             else
             {
-                print("Apro il sipario");
+                //print("Apro il sipario");
                 tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), targetAperture, speed * Time.deltaTime));
                 if (tende.GetBlendShapeWeight(0) >= targetAperture - 1f)
                 {
                     tende.SetBlendShapeWeight(0, 100f);
                     instructions = 3;
                     sceneIsLoaded = false;
-                    print("Sipario Aperto");
+                   // print("Sipario Aperto");
                 }
             }
             
@@ -83,20 +83,20 @@ public class siparioBehaviour : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
             sceneIsLoaded = true;
             targetAperture = 100f;
-            print("Ho caricato la nuova Scena");
+          //  print("Ho caricato la nuova Scena");
         }
     }
     
     void CalaSipario()
     {
-        print("Calo il sipario");
+       // print("Calo il sipario");
         targetAperture = 0f;
         if (tende.GetBlendShapeWeight(0) <= targetAperture+1f)
         {
             tende.SetBlendShapeWeight(0, 0f);
             sceneIsLoaded = false;
             instructions = 0;
-            print("Sipario CALATO");
+            //print("Sipario CALATO");
         }
         else
         {
