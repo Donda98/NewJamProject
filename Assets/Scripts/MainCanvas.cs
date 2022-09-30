@@ -186,7 +186,7 @@ public class MainCanvas : MonoBehaviour
                 textContent[2].text = "Créditos";
                 textContent[3].text = "Salir";
                 textContent[4].text = "Volumen";
-                textContent[5].text = "Lenguas";
+                textContent[5].text = "Idioma";
                 textContent[6].text = "Pantalla completa";
                 textContent[7].text = "Resolución";
                 textContent[8].text = "Retornar";
