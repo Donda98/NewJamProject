@@ -4,32 +4,9 @@ using UnityEngine;
 
 public class Spectator : MonoBehaviour
 {
-    private float jumpHeight = 1f;
-    private bool reacting;
-
-    // Start is called before the first frame update
     void Start()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(1)&&reacting==false)
-        {
-            StartCoroutine(Wow());
-        }
-     
-    }
-
-    public IEnumerator Wow()
-    {
-        reacting = true;
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.audienceAudio[0]);
-        transform.position = transform.position + new Vector3(0, jumpHeight, 0);
-        yield return new WaitForSeconds(GameManager.Instance.audienceAudio[0].length);
-        transform.position = transform.position - new Vector3(0, jumpHeight, 0);
-        reacting = false;
+        GameManager.Instance.audience = gameObject;
     }
     
 }

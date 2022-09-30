@@ -13,9 +13,8 @@ public class GameManager : MonoBehaviour
     public AudioSource mixerAudio;
     public MainCanvas canvas;
     public GameObject playerInstance;
-
     public siparioBehaviour sipario;
-    
+    public GameObject audience;
     public int language; //0 = Inglese, 1 = Italiano
 
 
@@ -61,5 +60,17 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
        // UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void AudienceReaction()
+    {
+        StartCoroutine(Wow());
+    }
+    public IEnumerator Wow()
+    {
+        mixerAudio.PlayOneShot(GameManager.Instance.audienceAudio[0]);
+        audience.transform.position = audience.transform.position + new Vector3(0, 1, 0);
+        yield return new WaitForSeconds(GameManager.Instance.audienceAudio[0].length);
+        audience.transform.position = audience.transform.position - new Vector3(0, 1, 0);
     }
 }

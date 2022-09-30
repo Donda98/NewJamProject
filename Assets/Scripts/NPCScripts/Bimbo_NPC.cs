@@ -10,7 +10,8 @@ public class Bimbo_NPC : NPC
         {
             print("OH SUGOI DESU NE");
             playerInventory.FreeInventorySlot();
-            //concludes and change scene
+            GameManager.Instance.StartAct(2);
+            GameManager.Instance.AudienceReaction();
         }
         else
         {
