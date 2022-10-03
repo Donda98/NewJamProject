@@ -62,7 +62,7 @@ public class MainCanvas : MonoBehaviour
             background.SetActive(false);
         }
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
-
+        GameManager.Instance.audience.Chatting();
     }
     public void ShowOptions()
     {
@@ -100,6 +100,7 @@ public class MainCanvas : MonoBehaviour
         isOnMenu = false;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
         GameManager.Instance.StartAct(1);
+        GameManager.Instance.audience.ShutUP();
     }
 
     public void ShowPauseMenu()
@@ -111,6 +112,7 @@ public class MainCanvas : MonoBehaviour
         background.SetActive(true);
         isPaused = true;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
+        GameManager.Instance.audience.Chatting();
     }
     public void ResumeGame()
     {
@@ -121,6 +123,7 @@ public class MainCanvas : MonoBehaviour
         isPaused = false;
         background.SetActive(false);
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
+        GameManager.Instance.audience.ShutUP();
     }
 
     public void BackToMenu()
@@ -137,7 +140,9 @@ public class MainCanvas : MonoBehaviour
     }
     public void SetVolume()
     {
-        GameManager.Instance.mixerAudio.volume = volumeSlide.GetComponent<Slider>().value;
+        GameManager.Instance.generalVolume = volumeSlide.GetComponent<Slider>().value;
+        GameManager.Instance.UpdateVolume();
+        GameManager.Instance.audience.UpdateVolume();
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
 

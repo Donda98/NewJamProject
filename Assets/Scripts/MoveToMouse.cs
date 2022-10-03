@@ -165,6 +165,14 @@ public class MoveToMouse : MonoBehaviour
                 print("Ho cliccato un Item");
             }
         }
+        if (transform.position.x < target.x)
+        {
+            transform.eulerAngles = new Vector3(0, 90, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, -90, 0);
+        }
     }
 
     IEnumerator ReachInteractableCoRoutine(IInteractable interacted)

@@ -8,13 +8,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Texture2D cursorSkin;
     public Camera playerCAM;
-    public AudioClip[] audienceAudio;
     public AudioClip[] UIAudio;
     public AudioSource mixerAudio;
     public MainCanvas canvas;
     public GameObject playerInstance;
     public siparioBehaviour sipario;
-    public GameObject audience;
+    public Spectator audience;
+    public int playerLVL;
+    public float generalVolume=0.175f;
     public int language; //0 = Inglese, 1 = Italiano
 
 
@@ -41,6 +42,11 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+    public void UpdateVolume()
+    {
+        mixerAudio.volume = generalVolume;
+    }
     public void StartAct(int x)
     {
         sipario.instructions = 1;
@@ -62,15 +68,5 @@ public class GameManager : MonoBehaviour
        // UnityEditor.EditorApplication.isPlaying = false;
     }
 
-    public void AudienceReaction()
-    {
-        StartCoroutine(Wow());
-    }
-    public IEnumerator Wow()
-    {
-        mixerAudio.PlayOneShot(GameManager.Instance.audienceAudio[0]);
-        audience.transform.position = audience.transform.position + new Vector3(0, 1, 0);
-        yield return new WaitForSeconds(GameManager.Instance.audienceAudio[0].length);
-        audience.transform.position = audience.transform.position - new Vector3(0, 1, 0);
-    }
+    
 }

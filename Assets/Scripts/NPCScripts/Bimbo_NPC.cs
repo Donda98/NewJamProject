@@ -11,7 +11,8 @@ public class Bimbo_NPC : NPC
             print("OH SUGOI DESU NE");
             playerInventory.FreeInventorySlot();
             GameManager.Instance.StartAct(2);
-            GameManager.Instance.AudienceReaction();
+            GameManager.Instance.audience.AudienceReaction();
+            GameManager.Instance.playerInstance.GetComponent<PlayerLevel>().lvlUP();
         }
         else
         {
