@@ -8,6 +8,10 @@ public class SiparioBehaviour : MonoBehaviour
     public static SiparioBehaviour Instance;
     [SerializeField] private SkinnedMeshRenderer tende;
     [SerializeField] private MainCanvas canvas;
+    public float timeToOpenOrClose;
+    [SerializeField] private bool hasToClose;
+   public SpotlightSystem spotLight;
+    private Coroutine cor;
    // [SerializeField] private Light lightTeatro;
     public float speed;
     public int instructions;
@@ -25,6 +29,8 @@ public class SiparioBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(GameManager.Instance!=null)
+        GameManager.Instance.sipario = this;
     }
     void Start()
     {
@@ -36,67 +42,130 @@ public class SiparioBehaviour : MonoBehaviour
         switch (instructions)
         {
             case 0:
-                ApriSipario(sceneToLoad);
+                //ApriSipario(sceneToLoad);
                 break;
             case 1:
-                CalaSipario();
+                //CalaSipario();
                 break;
-            default:
-                if (canvas.isPaused||canvas.isOnMenu)
-                {
-                    tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 0f, speed * Time.deltaTime));
-                   // lightTeatro.intensity = Mathf.Lerp(lightTeatro.intensity, 20000f, speed * 0.8f * Time.deltaTime);
-                }
-                else
-                {
-                    tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 100f, speed * Time.deltaTime));
-                   // lightTeatro.intensity = Mathf.Lerp(lightTeatro.intensity, 0f, speed * 0.8f * Time.deltaTime);
-                }
-                break;
+            //default:
+            //    if (canvas.isPaused || canvas.isOnMenu)
+            //    {
+            //        tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 0, Mathf.Exp(2)*(-speed * Time.deltaTime)));
+            //        // lightTeatro.intensity = Mathf.Lerp(lightTeatro.intensity, 20000f, speed * 0.8f * Time.deltaTime);
+            //    }
+            //    break;
+                //else
+                //{
+                //    tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 100, Mathf.Exp(2) * (-speed * Time.deltaTime)));
+                //    // lightTeatro.intensity = Mathf.Lerp(lightTeatro.intensity, 0f, speed * 0.8f * Time.deltaTime);
+                //}
+                //break;
         }
     }
-    void ApriSipario(int x)
+    public void ApriSipario()
     {
-        if (sceneIsLoaded)
+        cor = StartCoroutine(ApriSiparioCoroutine());
+    }
+    public IEnumerator ApriSiparioCoroutine()
+    {
+        bool doOnce=false;
+        yield return new WaitForSeconds(timeToOpenOrClose);
+        while (tende.GetBlendShapeWeight(0) < 100)
         {
-            if (sceneToLoad == 0)
+            if (!doOnce&& tende.GetBlendShapeWeight(0)>80)
             {
-                instructions = 3;
-                sceneIsLoaded = false;
+                spotLight.FadeLight();
+                doOnce = true;
             }
-            else
+            if (tende.GetBlendShapeWeight(0) > 99f)
             {
-                //print("Apro il sipario");
-                tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), targetAperture, speed * Time.deltaTime));
-                if (tende.GetBlendShapeWeight(0) >= targetAperture - 1f)
-                {
-                    tende.SetBlendShapeWeight(0, 100f);
-                    instructions = 3;
-                    sceneIsLoaded = false;
-                   // print("Sipario Aperto");
-                }
+                tende.SetBlendShapeWeight(0, 100);
             }
-            
+            tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 100, Mathf.Exp(2) * (speed * Time.deltaTime)));
+            yield return null;
+        }
+        hasToClose = true;
+    }
+
+    public IEnumerator ChiudiSiparioCoroutine()
+    {
+        bool doOnce = false;
+        if (!doOnce)
+        {
+            spotLight.FadeLight();
+            doOnce = true;
+        }
+        yield return new WaitForSeconds(timeToOpenOrClose);
+        while (tende.GetBlendShapeWeight(0) > 2.5)
+        {
+            print(tende.GetBlendShapeWeight(0));
+            if (tende.GetBlendShapeWeight(0) < 2.6f)
+            {
+                tende.SetBlendShapeWeight(0, 2.5f);
+            }
+            tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 2, Mathf.Exp(2) * (2*speed * Time.deltaTime)));
+            yield return null;
+        }
+        SceneManager.LoadScene(sceneToLoad);
+
+        cor=StartCoroutine(ApriSiparioCoroutine());
+
+    }
+
+
+    public IEnumerator ChiudiSiparioPerMenu()
+    {
+        if (cor != null)
+        {
+            StopCoroutine(cor);
+        }
+        
+        bool doOnce = false;
+        if (!doOnce)
+        {
+            spotLight.shouldFadeIn = false;
+            spotLight.FadeLight();
+            doOnce = true;
+        }
+       
+        while (tende.GetBlendShapeWeight(0) > 2.5)
+        {
+            print(tende.GetBlendShapeWeight(0));
+            if (tende.GetBlendShapeWeight(0) < 2.6f)
+            {
+                tende.SetBlendShapeWeight(0, 2.5f);
+            }
+            tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 2, Mathf.Exp(2) * (3*speed * Time.deltaTime)));
+            yield return null;
+        }
+        SceneManager.LoadScene(0);
+        GameManager.Instance.sipario = this;
+        MainCanvas.Instance.menuPages[0].SetActive(true);
+
+    }
+
+
+    public void ApriSipario(int x)
+    {
+        if (hasToClose)
+        {
+            StartCoroutine(ChiudiSiparioCoroutine());
         }
         else
         {
             SceneManager.LoadScene(sceneToLoad);
-            sceneIsLoaded = true;
-            targetAperture = 100f;
-          //  print("Ho caricato la nuova Scena");
+            ApriSipario();
         }
     }
     
     void CalaSipario()
     {
-       // print("Calo il sipario");
         targetAperture = 0f;
         if (tende.GetBlendShapeWeight(0) <= targetAperture+1f)
         {
             tende.SetBlendShapeWeight(0, 0f);
             sceneIsLoaded = false;
             instructions = 0;
-            //print("Sipario CALATO");
         }
         else
         {

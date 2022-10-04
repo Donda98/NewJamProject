@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 [RequireComponent(typeof(Light))]
 public class SpotlightSystem : MonoBehaviour
 {
     [SerializeField] GameObject objectToFollow;
-    [SerializeField] Light spotlight;
+    [SerializeField] HDAdditionalLightData spotlight;
     [SerializeField] float followSpeed;
+    [SerializeField] float maxIntensity;
+    [SerializeField] float fadeSpeed;
+    private SiparioBehaviour sipario;
+    public bool shouldFadeIn=true;
 
     private void Awake()
     {
@@ -15,7 +20,9 @@ public class SpotlightSystem : MonoBehaviour
     }
     void Start()
     {
-        spotlight = GetComponent<Light>();
+        sipario = FindObjectOfType<SiparioBehaviour>();
+        sipario.spotLight = this;
+        spotlight = GetComponent<Light>().GetComponent<HDAdditionalLightData>();
     // objectToFollow = GameManager.Instance.playerInstance;
         spotlight.intensity = 0f;
     }
@@ -64,5 +71,37 @@ public class SpotlightSystem : MonoBehaviour
         spotlight.color = newColor;
     }
 
+    public void FadeLight()
+    {
+        print("call fade");
+        if (shouldFadeIn)
+        {
+            StartCoroutine(FadeInLight());
+            shouldFadeIn = false;
+        }
+        else
+        {
+            StartCoroutine(FadeOutLight());
+            shouldFadeIn = false;
+        }
+    }
+    private IEnumerator FadeInLight()
+    {
+        while (spotlight.intensity < maxIntensity-1)
+        {
+            spotlight.intensity = Mathf.Lerp(spotlight.intensity, maxIntensity, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+    }
+
+    private IEnumerator FadeOutLight()
+    {
+        while (spotlight.intensity > 1)
+        {
+            spotlight.intensity = Mathf.Lerp(spotlight.intensity, 0, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
 
 }
