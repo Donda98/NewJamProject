@@ -719,6 +719,9 @@ MonoBehaviour:
   objectToFollow: {fileID: 753838097}
   spotlight: {fileID: 571640384}
   followSpeed: 3.5
+  maxIntensity: 600
+  fadeSpeed: 1.25
+  shouldFadeIn: 1
 --- !u!114 &571640383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1210,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3bc894b184eed0e46bc3e090c0b488a6, type: 3}
   - {fileID: 8300000, guid: d3e0c87cdd33ecd4fbf1867853c33ab5, type: 3}
   - {fileID: 8300000, guid: ccf8da1332d57354a8a0aae8706cb5e8, type: 3}
+  interactClips: []
   mixerAudio: {fileID: 749113000}
   canvas: {fileID: 0}
   playerInstance: {fileID: 0}

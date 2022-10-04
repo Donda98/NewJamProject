@@ -1488,6 +1488,7 @@ MonoBehaviour:
   followSpeed: 3.5
   maxIntensity: 600
   fadeSpeed: 1.5
+  shouldFadeIn: 1
 --- !u!1 &634745147
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,10 +4647,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tende: {fileID: 2674819489730906988}
   canvas: {fileID: 107886303}
-  timeToOpenOrClose: 2
+  timeToOpenOrClose: 0
   hasToClose: 0
   spotLight: {fileID: 0}
-  speed: 0.06
+  speed: 0.07
   instructions: 0
   targetAperture: 0
   sceneToLoad: 0
