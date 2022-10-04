@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public AudioSource mixerAudio;
     public MainCanvas canvas;
     public GameObject playerInstance;
-    public siparioBehaviour sipario;
+    public SiparioBehaviour sipario;
     public Spectator audience;
     public int playerLVL;
     public float generalVolume=0.175f;

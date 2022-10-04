@@ -162,7 +162,6 @@ public class MoveToMouse : MonoBehaviour
             }
             else
             {
-                print("Ho cliccato un Item");
             }
         }
         if (transform.position.x < target.x)
@@ -193,12 +192,11 @@ public class MoveToMouse : MonoBehaviour
             TriggerOnClickAction(interacted);
         }
     }
-
     private void TriggerOnClickAction(IInteractable interacted)
     {
         interacted.OnClick(characterInventory);
     }
-    private void SetTarget(Vector3 newTarget)
+    public void SetTarget(Vector3 newTarget)
     {
         target = newTarget;
         target.z = transform.position.z;

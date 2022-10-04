@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class siparioBehaviour : MonoBehaviour
+public class SiparioBehaviour : MonoBehaviour
 {
-    public static siparioBehaviour Instance;
+    public static SiparioBehaviour Instance;
     [SerializeField] private SkinnedMeshRenderer tende;
     [SerializeField] private MainCanvas canvas;
    // [SerializeField] private Light lightTeatro;
