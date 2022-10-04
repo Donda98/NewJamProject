@@ -15,47 +15,55 @@ public class PlayerLevel : MonoBehaviour
     {
         UpdateSkin();
     }
-    [ContextMenu("Update")]
+    [ContextMenu("UpdateSkin")]
     public void UpdateSkin()
     {
         playerLVL = GameManager.Instance.playerLVL;
-        switch (GameManager.Instance.playerLVL)
+        for (int i = 0; i <= playerLVL; i++)
         {
-            case 0:
-                //naked GUY
-                break;
-            case 1:
-                foreach(GameObject componente in componentsLVL1)
-                {
-                    componente.SetActive(true);
-                }
-                break;
-            
-            case 2:
-                foreach (GameObject componente in componentsLVL1)
-                {
-                    componente.SetActive(false);
-                }
-                foreach (GameObject componente in componentsLVL2)
-                {
-                    componente.SetActive(true);
-                }
-                break;
+            switch (i)
+            {
+                case 0:
+                    //naked GUY
+                    print("livello0");
+                    break;
+                case 1:
+                    foreach (GameObject componente in componentsLVL0)
+                    {
+                        componente.SetActive(false);
+                    }
+                    foreach (GameObject componente in componentsLVL1)
+                    {
+                        componente.SetActive(true);
+                    }
+                    print("livello1");
+                    break;
 
-            case 3:
-                foreach (GameObject componente in componentsLVL3)
-                {
-                    componente.SetActive(true);
-                }
-                occhiBase.SetActive(false);
-                break;
-            default:
-                foreach (GameObject componente in componentsLVL3)
-                {
-                    componente.SetActive(true);
-                }
-                occhiBase.SetActive(false);
-                break;
+                case 2:
+                  
+                    foreach (GameObject componente in componentsLVL2)
+                    {
+                        componente.SetActive(true);
+                    }
+                    print("livello2");
+                    break;
+
+                case 3:
+                    foreach (GameObject componente in componentsLVL3)
+                    {
+                        componente.SetActive(true);
+                    }
+                    occhiBase.SetActive(false);
+                    print("livello3");
+                    break;
+                default:
+                    foreach (GameObject componente in componentsLVL3)
+                    {
+                        componente.SetActive(true);
+                    }
+                    occhiBase.SetActive(false);
+                    break;
+            }
         }
     }
     public void lvlUP()
