@@ -60,7 +60,7 @@ MonoBehaviour:
   componentsLVL2:
   - {fileID: 6572447874974135708}
   componentsLVL3:
-  - {fileID: 1827632180975229823}
+  - {fileID: 6783453092318200648}
   - {fileID: 8901512276667419042}
   - {fileID: 1443226441830192711}
   - {fileID: 2701116228174316856}
@@ -145,6 +145,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8243722976629341139}
     m_Modifications:
+    - target: {fileID: -9063863129354601677, guid: e6421de4200cdf247b15d986276677a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8709389661565820773, guid: e6421de4200cdf247b15d986276677a0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -425,12 +430,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6635238368796489851}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1827632180975229823 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4231105542246767868, guid: e6421de4200cdf247b15d986276677a0,
-    type: 3}
-  m_PrefabInstance: {fileID: 6635238368796489851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2701116228174316856 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8748612544382876995, guid: e6421de4200cdf247b15d986276677a0,
@@ -513,6 +512,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &6783453092318200648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -9063863129354601677, guid: e6421de4200cdf247b15d986276677a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6635238368796489851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7083089033782401829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4730690736054820002, guid: e6421de4200cdf247b15d986276677a0,

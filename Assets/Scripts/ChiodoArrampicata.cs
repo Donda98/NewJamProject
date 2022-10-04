@@ -6,6 +6,8 @@ public class ChiodoArrampicata : MonoBehaviour,IInteractable
 {
     [SerializeField] BoxCollider[] upperClickableSpace;
     [SerializeField] BoxCollider[] bottomClickableSpace;
+    [SerializeField] BoxCollider[] cumuliDiNeve;
+    [SerializeField] CapsuleCollider tipoNellaNeve;
     private GameObject player;
     [SerializeField] Transform upperTeleportTransform;
     [SerializeField] Transform bottomTeleportTransform;
@@ -22,13 +24,24 @@ public class ChiodoArrampicata : MonoBehaviour,IInteractable
 
         if (isPlayerDown)
         {
-            if (medikit!=null&&questIsActive)
+            if (medikit!=null&&tipoNellaNeve!=null&&questIsActive)
             {
                 medikit.enabled = true;
+                tipoNellaNeve.enabled = false;
             }
             else
             {
-                medikit.enabled = false;
+                if (tipoNellaNeve != null)
+                {
+                    tipoNellaNeve.enabled = false;
+                }
+            }
+            foreach (BoxCollider collider in cumuliDiNeve)
+            {
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
             }
             upperClickableSpace[0].enabled = true;
             bottomClickableSpace[0].enabled = false;
@@ -43,6 +56,19 @@ public class ChiodoArrampicata : MonoBehaviour,IInteractable
             if (medikit != null)
             {
                 medikit.enabled = false;
+            }
+
+            if (tipoNellaNeve != null && questIsActive)
+            {
+                tipoNellaNeve.enabled = true;
+            }
+
+            foreach (BoxCollider collider in cumuliDiNeve)
+            {
+                if (collider != null)
+                {
+                    collider.enabled = true;
+                }
             }
             upperClickableSpace[0].enabled = false;
             bottomClickableSpace[0].enabled = true;

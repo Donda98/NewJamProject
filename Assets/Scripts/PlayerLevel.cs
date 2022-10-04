@@ -15,6 +15,7 @@ public class PlayerLevel : MonoBehaviour
     {
         UpdateSkin();
     }
+    [ContextMenu("Update")]
     public void UpdateSkin()
     {
         playerLVL = GameManager.Instance.playerLVL;
