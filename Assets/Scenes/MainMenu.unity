@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -1051,6 +1051,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3e0c87cdd33ecd4fbf1867853c33ab5, type: 3}
   - {fileID: 8300000, guid: ccf8da1332d57354a8a0aae8706cb5e8, type: 3}
   - {fileID: 8300000, guid: d80f43427822ea744a251d7e796546a2, type: 3}
+  interactClips:
+  - {fileID: 8300000, guid: cff8b21348c2512498c65f3710b6dc8a, type: 3}
+  - {fileID: 8300000, guid: f4c7db2e66ab95642a9ff7ef598b5ecc, type: 3}
+  - {fileID: 8300000, guid: b6a11c21a7ef8ba42aa5f09c1972b5ea, type: 3}
   mixerAudio: {fileID: 749113000}
   canvas: {fileID: 0}
   playerInstance: {fileID: 0}
@@ -1404,7 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearColorMode: 1
+  clearColorMode: 2
   backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
   clearDepth: 1
   volumeLayerMask:

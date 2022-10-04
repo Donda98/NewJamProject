@@ -26,6 +26,7 @@ public class CumuloDiNeve : MonoBehaviour, IInteractable
             tipoDaSalvare.enabled = true;
             chiodo.questIsActive = true;
         }
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.interactClips[2]);
         Destroy(this.gameObject);
     }
 }

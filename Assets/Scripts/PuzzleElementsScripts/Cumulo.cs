@@ -28,6 +28,7 @@ public class Cumulo : PuzzleElement
                 altriCumuli[i].riduciNumeroCumuli();
             }
         }
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.interactClips[0],2.5f);
         Destroy(this.gameObject);
     }
 
@@ -35,6 +36,4 @@ public class Cumulo : PuzzleElement
     {
         cumuliRestanti--;
     }
-
-    
 }

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Texture2D cursorSkin;
     public Camera playerCAM;
     public AudioClip[] UIAudio;
+    public AudioClip[] interactClips;
     public AudioSource mixerAudio;
     public MainCanvas canvas;
     public GameObject playerInstance;
@@ -84,8 +85,6 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-       // UnityEditor.EditorApplication.isPlaying = false;
-    }
-
-    
+        //UnityEditor.EditorApplication.isPlaying = false;
+    }  
 }

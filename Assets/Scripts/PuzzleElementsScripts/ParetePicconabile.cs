@@ -8,9 +8,10 @@ public class ParetePicconabile : PuzzleElement
     [SerializeField] GameObject clickableSpace;
     public override void CustomOnClickAction(Inventory playerInventory)
     {
-        Destroy(this.gameObject);
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.interactClips[1], 2.5f);
         playerInventory.FreeInventorySlot();
         tipoMacerie.enabled = true;
         clickableSpace.SetActive(true);
+        Destroy(this.gameObject);
     }
 }
