@@ -2569,6 +2569,36 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1282937156}
+    - target: {fileID: 1479835994808003881, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479835994808003881, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479835994808003881, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479835994838267250, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479835995451390160, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479835995451390160, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1479835995777801030, guid: d2946026a6f930d4a9c8ce186c501dbc,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2579,8 +2609,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 845933096, guid: d2946026a6f930d4a9c8ce186c501dbc, type: 3}
+    - target: {fileID: 8850987185091903604, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850987185091903604, guid: d2946026a6f930d4a9c8ce186c501dbc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2946026a6f930d4a9c8ce186c501dbc, type: 3}
 --- !u!137 &2674819489730906988
 SkinnedMeshRenderer:
