@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4286049283665441605}
   - component: {fileID: 3961835570674646314}
+  - component: {fileID: 6967724359720540536}
   m_Layer: 11
   m_Name: Cumulo_Di_Neve
   m_TagString: Untagged
@@ -48,6 +49,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionPosition: {fileID: 2640698892139981506}
   tipoDaSalvare: {fileID: 0}
+--- !u!65 &6967724359720540536
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253832152141398138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8776937899021585276
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +73,6 @@ GameObject:
   - component: {fileID: 4158988379170566277}
   - component: {fileID: 6034809745098457565}
   - component: {fileID: 4869631809323191547}
-  - component: {fileID: 3003587769555057128}
   m_Layer: 11
   m_Name: Neve
   m_TagString: Untagged
@@ -132,19 +145,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3003587769555057128
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8776937899021585276}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9157940479282094614
 GameObject:
   m_ObjectHideFlags: 0

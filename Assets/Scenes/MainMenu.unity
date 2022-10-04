@@ -979,6 +979,7 @@ MonoBehaviour:
   playerInstance: {fileID: 0}
   sipario: {fileID: 0}
   audience: {fileID: 1456996840}
+  playerLVL: 0
   generalVolume: 0
   language: 0
 --- !u!4 &749113002
@@ -2507,7 +2508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tende: {fileID: 2674819489730906988}
   canvas: {fileID: 107886303}
-  speed: 1
+  speed: 1.25
   instructions: 0
   targetAperture: 0
   sceneToLoad: 0

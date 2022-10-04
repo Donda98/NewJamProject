@@ -6,10 +6,11 @@ public class CumuloDiNeve : MonoBehaviour, IInteractable
 {
     [SerializeField]  Transform interactionPosition;
     [SerializeField] private CapsuleCollider tipoDaSalvare;
-
+    public static int numeroCumuli=0;
 
     private void Awake()
     {
+        numeroCumuli++;
     }
     public Transform GetInteractablePosition(Inventory playerInventory)
     {
@@ -18,12 +19,11 @@ public class CumuloDiNeve : MonoBehaviour, IInteractable
 
     public void OnClick(Inventory playerInventory)
     {
-        print("Ho Richiamato ON CLICK");
-        CustomOnClickAction();
-    }
-    public void CustomOnClickAction()
-    {
-        print("Dovrei distruggere la neve");
-        Destroy(this.gameObject);
+        numeroCumuli--;
+        if (numeroCumuli <= 0)
+        {
+            tipoDaSalvare.enabled = true;
+            Destroy(this.gameObject);
+        }
     }
 }

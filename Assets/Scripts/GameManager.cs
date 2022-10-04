@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
+        playerLVL = 0;
         sipario.instructions = 1;
         sipario.sceneToLoad = 0;
     }
