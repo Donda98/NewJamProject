@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Bimbo_NPC : NPC
 {
-    [SerializeField] private int nextScene;
+    [SerializeField] BoxCollider medikit;
     public override void ReproduceDialogue(Inventory playerInventory)
     {
         if (playerInventory.currentItem.GetItemID() == requiredItemID)
         {
             print("OH SUGOI DESU NE");
             playerInventory.FreeInventorySlot();
-            GameManager.Instance.StartAct(nextScene);
+            GameManager.Instance.StartAct(2);
             GameManager.Instance.audience.AudienceReaction();
             GameManager.Instance.playerInstance.GetComponent<PlayerLevel>().lvlUP();
         }

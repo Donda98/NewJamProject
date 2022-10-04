@@ -24,7 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player_MAT_01
-  m_Shader: {fileID: -6465566751694194690, guid: 6d0ea5ec129d0724fb72552e3f7773de,
+  m_Shader: {fileID: -6465566751694194690, guid: a052280807ae28841aa475661d7ae8f9,
     type: 3}
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
@@ -77,6 +77,8 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _BlendMode: 0
+    - _BreathAmount: 0.15
+    - _BreathSpeed: 0.5
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2

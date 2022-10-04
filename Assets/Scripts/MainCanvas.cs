@@ -34,6 +34,7 @@ public class MainCanvas : MonoBehaviour
         GameManager.Instance.canvas = this.GetComponent<MainCanvas>();
         FindAllResolutions();
         ShowMenu();
+        SetVolume();
         GetComponent<Canvas>().worldCamera = GameManager.Instance.playerCAM;
     }
 

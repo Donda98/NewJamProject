@@ -9,6 +9,8 @@ public class ChiodoArrampicata : MonoBehaviour,IInteractable
     private GameObject player;
     [SerializeField] Transform upperTeleportTransform;
     [SerializeField] Transform bottomTeleportTransform;
+    [SerializeField] BoxCollider medikit;
+    public bool questIsActive;
     private bool isPlayerDown;
 
     private void Start()
@@ -20,6 +22,14 @@ public class ChiodoArrampicata : MonoBehaviour,IInteractable
 
         if (isPlayerDown)
         {
+            if (medikit!=null&&questIsActive)
+            {
+                medikit.enabled = true;
+            }
+            else
+            {
+                medikit.enabled = false;
+            }
             upperClickableSpace[0].enabled = true;
             bottomClickableSpace[0].enabled = false;
             upperClickableSpace[1].enabled = true;
@@ -30,6 +40,10 @@ public class ChiodoArrampicata : MonoBehaviour,IInteractable
         }
         else
         {
+            if (medikit != null)
+            {
+                medikit.enabled = false;
+            }
             upperClickableSpace[0].enabled = false;
             bottomClickableSpace[0].enabled = true;
             upperClickableSpace[1].enabled = false;

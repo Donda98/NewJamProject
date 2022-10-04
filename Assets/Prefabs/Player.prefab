@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2928036565694337304}
   - component: {fileID: 1589471152924496789}
   - component: {fileID: 2422768353245035457}
-  - component: {fileID: 7374592753756583792}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -139,26 +138,6 @@ MonoBehaviour:
   - {fileID: 5386689635848014715, guid: 9acffbf1d7c769344bc11929ca368f28, type: 3}
   - {fileID: 8623077688292478307, guid: 4695ceed9d538ff4180ededa709e85c3, type: 3}
   - {fileID: 466623558556656389, guid: 61d20b84c8cbd05419e701356e06f070, type: 3}
---- !u!95 &7374592753756583792
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6015168138843259446}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a70f3c87db3c87e4a94308d24c3e5abe, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6635238368796489851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -508,6 +487,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6635238368796489851}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6612196187322650048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 564681969693570491, guid: e6421de4200cdf247b15d986276677a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6635238368796489851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5448286406822957237
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6612196187322650048}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a70f3c87db3c87e4a94308d24c3e5abe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7083089033782401829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4730690736054820002, guid: e6421de4200cdf247b15d986276677a0,

@@ -1405,6 +1405,7 @@ MonoBehaviour:
   playerInstance: {fileID: 0}
   sipario: {fileID: 0}
   audience: {fileID: 0}
+  sceneAmbience: {fileID: 0}
   playerLVL: 0
   generalVolume: 0.175
   language: 0
@@ -3152,6 +3153,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Teatro
       objectReference: {fileID: 0}
+    - target: {fileID: 4870306238243979074, guid: 0745aab920916d146bc3d7808e6be330,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 72a3a12b90f0a8b4e9ebf7219e6e1adc, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0745aab920916d146bc3d7808e6be330, type: 3}
 --- !u!4 &1875948115 stripped

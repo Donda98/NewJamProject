@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerInstance;
     public SiparioBehaviour sipario;
     public Spectator audience;
+    public TheaterAmbience sceneAmbience;
     public int playerLVL;
     public float generalVolume=0.175f;
     public int language; //0 = Inglese, 1 = Italiano
@@ -40,15 +41,32 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            StartAct(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            StartAct(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            StartAct(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            StartAct(4);
+        }
     }
 
     public void UpdateVolume()
     {
         mixerAudio.volume = generalVolume;
+        sceneAmbience.UpdateVolume(generalVolume);
     }
     public void StartAct(int x)
     {
+        
         sipario.instructions = 1;
         sipario.sceneToLoad = x;
     }
