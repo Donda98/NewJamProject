@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.HighDefinition;
 
 public class MainCanvas : MonoBehaviour
 {
     public static MainCanvas Instance;
-    [SerializeField] private GameObject[] menuPages;
+    public GameObject[] menuPages;
     [SerializeField] private GameObject volumeSlide;
     [SerializeField] private GameObject language;
     [SerializeField] private GameObject background;
     [SerializeField] private TMP_Text[] textContent;
+    [SerializeField] private HDAdditionalLightData[] lights;
+    [SerializeField] private float lerpStageLightsSpeed=1;
+    private Coroutine cor;
+    private bool isFirstTime=true;
     public bool isPaused;
     public bool isOnMenu;
     public TMP_Dropdown resolutionDropdown;
@@ -98,10 +103,25 @@ public class MainCanvas : MonoBehaviour
         menuPages[1].SetActive(false);      //Options 
         menuPages[2].SetActive(false);      //Credits
         menuPages[3].SetActive(false);      //PauseMenu
-        isOnMenu = false;
-        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
-        GameManager.Instance.StartAct(1);
+        //isOnMenu = false;
+        GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);;
         GameManager.Instance.audience.ShutUP();
+        if(cor!=null)
+            StopCoroutine(cor);
+        cor=StartCoroutine(turnOffStageLights());
+    }
+    
+    private IEnumerator turnOffStageLights()
+    {
+        while (lights[0].intensity > 2)
+        {
+            print(lights[0].intensity);
+            foreach(HDAdditionalLightData light in lights){
+                light.intensity = Mathf.Lerp(light.intensity, 0, lerpStageLightsSpeed * Time.deltaTime);
+            }
+            yield return null;
+        }
+        GameManager.Instance.StartAct(1);
     }
 
     public void ShowPauseMenu()
@@ -129,7 +149,6 @@ public class MainCanvas : MonoBehaviour
 
     public void BackToMenu()
     {
-        menuPages[0].SetActive(true);       //Main menù
         menuPages[1].SetActive(false);      //Options 
         menuPages[2].SetActive(false);      //Credits
         menuPages[3].SetActive(false);      //PauseMenu

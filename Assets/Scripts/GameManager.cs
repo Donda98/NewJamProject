@@ -67,9 +67,19 @@ public class GameManager : MonoBehaviour
     }
     public void StartAct(int x)
     {
-        
-        sipario.instructions = 1;
-        sipario.sceneToLoad = x;
+        StartCoroutine(WaitToLoad(x));
+    }
+
+    public IEnumerator WaitToLoad(int act)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (sipario == null)
+        {
+            sipario = FindObjectOfType<SiparioBehaviour>();
+        }
+        sipario.sceneToLoad = act;
+        canvas.isOnMenu = false;
+        sipario.ApriSipario(1);
     }
     public void ReloadScene()
     {
@@ -81,6 +91,7 @@ public class GameManager : MonoBehaviour
         playerLVL = 0;
         sipario.instructions = 1;
         sipario.sceneToLoad = 0;
+        StartCoroutine(sipario.ChiudiSiparioPerMenu());
     }
     public void QuitGame()
     {
