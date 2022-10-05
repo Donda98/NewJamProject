@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
         playerLVL = 0;
         sipario.instructions = 1;
         sipario.sceneToLoad = 0;
+        CitiesManager.Instance.currentcity = -1;
         StartCoroutine(sipario.ChiudiSiparioPerMenu());
     }
     public void QuitGame()

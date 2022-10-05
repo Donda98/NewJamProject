@@ -7,7 +7,7 @@ public class CitiesManager : MonoBehaviour
     public static CitiesManager Instance;
     [SerializeField] GameObject[] cities;
     private Coroutine cor;
-    private int currentcity = -1;
+    public int currentcity = -1;
     [SerializeField] float maxTranslation=10;
     [SerializeField] float speed;
     [SerializeField] float secondsToGoBack=3;

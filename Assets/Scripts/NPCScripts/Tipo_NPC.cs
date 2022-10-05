@@ -36,6 +36,6 @@ public class Tipo_NPC : NPC
     {
         animator.SetBool("isPointing", true);
         yield return new WaitForSeconds(3);
-        animator.SetBool("isPointing", true);
+        animator.SetBool("isPointing", false);
     }
 }

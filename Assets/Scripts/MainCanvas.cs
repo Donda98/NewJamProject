@@ -156,6 +156,7 @@ public class MainCanvas : MonoBehaviour
         isPaused = false;
         background.SetActive(false);
         GameManager.Instance.LoadMenu();
+        CitiesManager.Instance.currentcity = -1;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);
     }
     public void SetVolume()
