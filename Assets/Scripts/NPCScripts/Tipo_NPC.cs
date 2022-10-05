@@ -6,6 +6,7 @@ public class Tipo_NPC : NPC
 {
     [SerializeField] PareteBloccante parete;
     [SerializeField] BoxCollider tablet;
+    [SerializeField] Animator animator;
     public AudioClip positiveClip;
     public AudioClip negativeClip;
     public override void ReproduceDialogue(Inventory playerInventory)
@@ -19,6 +20,7 @@ public class Tipo_NPC : NPC
             playerInventory.FreeInventorySlot();
             parete.enabled = true;
             tablet.enabled = true;
+            StartCoroutine(PointTowards());
             parete.GetComponent<BoxCollider>().enabled = true;
             GetComponent<CapsuleCollider>().enabled = false;
         }
@@ -28,5 +30,12 @@ public class Tipo_NPC : NPC
             audio.Play();
             print("It is not what I need");
         }
+    }
+
+    public IEnumerator PointTowards()
+    {
+        animator.SetBool("isPointing", true);
+        yield return new WaitForSeconds(3);
+        animator.SetBool("isPointing", true);
     }
 }
