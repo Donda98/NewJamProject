@@ -31,9 +31,9 @@ public class CitiesManager : MonoBehaviour
         {
             StopCoroutine(cor);
         }
-        startTranslation = cities[currentcity].transform.position.y;
         if (currentcity < cities.Length)
         {
+            startTranslation = cities[currentcity].transform.position.y;
             StartCoroutine(ShowCityCoroutine());
         }
     }
