@@ -12,7 +12,6 @@ public class MoveToMouse : MonoBehaviour
 
     [SerializeField] private Camera mainCam;
     [SerializeField] private MainCanvas canvas;
-    [SerializeField] private Animator playerAnimator;
 
     private bool mouseOnItem;
     private bool isClicking;
@@ -126,7 +125,6 @@ public class MoveToMouse : MonoBehaviour
         if (transform.position == target && isGoingToInteractionPoint == false)
         {
             isMoving = false;
-            playerAnimator.SetBool("isMoving", false);
         }
     }
 
@@ -142,7 +140,6 @@ public class MoveToMouse : MonoBehaviour
             {
                 SetTarget(hit.point);
                 isMoving = true;
-                playerAnimator.SetBool("isMoving", true);
                 isGoingToInteractionPoint = false;
             }
             else
@@ -180,7 +177,6 @@ public class MoveToMouse : MonoBehaviour
     IEnumerator ReachInteractableCoRoutine(IInteractable interacted)
     {
         isMoving = true;
-        playerAnimator.SetBool("isMoving", true);
         isGoingToInteractionPoint = true;
         print("Coroutine Started");
         print("I am on my way");
@@ -192,7 +188,6 @@ public class MoveToMouse : MonoBehaviour
         {
             isGoingToInteractionPoint = false;
             isMoving = false;
-            playerAnimator.SetBool("isMoving", false);
             print("Point reached");
             TriggerOnClickAction(interacted);
         }
