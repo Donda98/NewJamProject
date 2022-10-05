@@ -614,6 +614,9 @@ MonoBehaviour:
   objectToFollow: {fileID: 753838097}
   spotlight: {fileID: 571640384}
   followSpeed: 3.5
+  maxIntensity: 600
+  fadeSpeed: 1.25
+  shouldFadeIn: 1
 --- !u!114 &571640383
 MonoBehaviour:
   m_ObjectHideFlags: 0

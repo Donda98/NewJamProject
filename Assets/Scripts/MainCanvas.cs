@@ -106,7 +106,8 @@ public class MainCanvas : MonoBehaviour
         //isOnMenu = false;
         GameManager.Instance.mixerAudio.PlayOneShot(GameManager.Instance.UIAudio[2]);;
         GameManager.Instance.audience.ShutUP();
-        if(cor!=null)
+        CitiesManager.Instance.ShowCity();
+        if (cor!=null)
             StopCoroutine(cor);
         cor=StartCoroutine(turnOffStageLights());
     }
@@ -115,7 +116,6 @@ public class MainCanvas : MonoBehaviour
     {
         while (lights[0].intensity > 2)
         {
-            print(lights[0].intensity);
             foreach(HDAdditionalLightData light in lights){
                 light.intensity = Mathf.Lerp(light.intensity, 0, lerpStageLightsSpeed * Time.deltaTime);
             }
