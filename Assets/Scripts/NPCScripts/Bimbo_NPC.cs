@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class Bimbo_NPC : NPC
 {
     [SerializeField] BoxCollider medikit;
+    public AudioClip positiveClip;
+    public AudioClip negativeClip;
     public override void ReproduceDialogue(Inventory playerInventory)
     {
+        AudioSource audio = GetComponent<AudioSource>();
         if (playerInventory.currentItem.GetItemID() == requiredItemID)
         {
+            audio.clip = positiveClip;
+            audio.Play();
             print("OH SUGOI DESU NE");
             playerInventory.FreeInventorySlot();
             GameManager.Instance.StartAct(2);
@@ -18,6 +23,8 @@ public class Bimbo_NPC : NPC
         }
         else
         {
+            audio.clip = negativeClip;
+            audio.Play();
             print("It is not what I need");
         }
     }
