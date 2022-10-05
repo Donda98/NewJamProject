@@ -6,10 +6,15 @@ public class Tipo_NPC : NPC
 {
     [SerializeField] PareteBloccante parete;
     [SerializeField] BoxCollider tablet;
+    public AudioClip positiveClip;
+    public AudioClip negativeClip;
     public override void ReproduceDialogue(Inventory playerInventory)
     {
+        AudioSource audio = GetComponent<AudioSource>();
         if (playerInventory.currentItem.GetItemID() == requiredItemID)
         {
+            audio.clip = positiveClip;
+            audio.Play();
             print("OH SUGOI DESU NE");
             playerInventory.FreeInventorySlot();
             parete.enabled = true;
@@ -19,6 +24,8 @@ public class Tipo_NPC : NPC
         }
         else
         {
+            audio.clip = negativeClip;
+            audio.Play();
             print("It is not what I need");
         }
     }

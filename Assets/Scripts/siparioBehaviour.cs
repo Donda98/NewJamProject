@@ -8,12 +8,12 @@ public class SiparioBehaviour : MonoBehaviour
     public static SiparioBehaviour Instance;
     [SerializeField] private SkinnedMeshRenderer tende;
     [SerializeField] private MainCanvas canvas;
-    public float timeToOpenOrClose;
+    public float timeToOpenOrClose=2f;
     [SerializeField] private bool hasToClose;
    public SpotlightSystem spotLight;
     private Coroutine cor;
    // [SerializeField] private Light lightTeatro;
-    public float speed;
+    public float speed=0.07f;
     public int instructions;
     public float targetAperture;
     public int sceneToLoad;
