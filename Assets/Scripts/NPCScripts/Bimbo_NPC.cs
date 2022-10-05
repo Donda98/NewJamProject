@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Bimbo_NPC : NPC
 {
-    [SerializeField] BoxCollider medikit;
     public override void ReproduceDialogue(Inventory playerInventory)
     {
         if (playerInventory.currentItem.GetItemID() == requiredItemID)
