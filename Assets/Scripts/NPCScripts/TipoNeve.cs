@@ -16,7 +16,7 @@ public class TipoNeve : NPC
             print("OH SUGOI DESU NE");
             playerInventory.FreeInventorySlot();
             GetComponent<CapsuleCollider>().enabled = false;
-            GameManager.Instance.StartAct(4);
+            GameManager.Instance.LoadMenu();
             GameManager.Instance.audience.AudienceReaction();
             GameManager.Instance.playerInstance.GetComponent<PlayerLevel>().lvlUP();
         }
