@@ -68,6 +68,7 @@ public class SiparioBehaviour : MonoBehaviour
     }
     public IEnumerator ApriSiparioCoroutine()
     {
+        //CitiesManager.Instance.ShowCity();
         bool doOnce=false;
         yield return new WaitForSeconds(timeToOpenOrClose);
         while (tende.GetBlendShapeWeight(0) < 100)
@@ -90,6 +91,7 @@ public class SiparioBehaviour : MonoBehaviour
     public IEnumerator ChiudiSiparioCoroutine()
     {
         bool doOnce = false;
+        bool doOnce2 = false;
         if (!doOnce)
         {
             spotLight.FadeLight();
@@ -103,12 +105,16 @@ public class SiparioBehaviour : MonoBehaviour
             {
                 tende.SetBlendShapeWeight(0, 2.5f);
             }
+            if(!doOnce2&& tende.GetBlendShapeWeight(0) < 30)
+            {
+                CitiesManager.Instance.ShowCity();
+                doOnce2 = true;
+            }
             tende.SetBlendShapeWeight(0, Mathf.Lerp(tende.GetBlendShapeWeight(0), 2, Mathf.Exp(2) * (2*speed * Time.deltaTime)));
             yield return null;
         }
         SceneManager.LoadScene(sceneToLoad);
-
-        cor=StartCoroutine(ApriSiparioCoroutine());
+        cor =StartCoroutine(ApriSiparioCoroutine());
 
     }
 
